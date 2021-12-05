@@ -1,8 +1,6 @@
 <?php 
     session_start();
-    
     require 'Includes/db.inc.php';
-
 
     $page = 'index';
 
@@ -13,11 +11,11 @@
         }
     }
 
-    $menupontok = array('index' => "Főoldal", 
+    $menu = array('index' => "Főoldal", 
                         'felhasznalo' => $szoveg
                         );
 
-    $title = $menupontok[$page];
+    $title = $menu[$page];
     include 'Includes/header.inc.php';
 ?>
 
