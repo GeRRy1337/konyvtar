@@ -21,8 +21,8 @@
     }
 
     $menu = array('index' => "Főoldal", 
-                        'felhasznalo' => $szoveg
-                        );
+                  'userControl' => $szoveg
+                );
 
     $title = $menu[$page];
     include 'includes/header.inc.php';
