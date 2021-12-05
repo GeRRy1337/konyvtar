@@ -65,5 +65,14 @@
             return $list;
         }
 
+        public function upload_author($conn,$name,$description,$birthDate){
+            $sql = "INSERT INTO authors(name,description,DateOfBirth) VALUES('$name','$description','$birthDate') ";
+            if($result = $conn->query($sql)) {
+                echo 'Sikeres feltöltés';
+            }else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
+
     }
 ?>

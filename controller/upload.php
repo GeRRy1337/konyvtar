@@ -1,5 +1,5 @@
 <?php
-    if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['release']) && isset($_FILES['fileToUpload'])){
+    if(isset($_POST['name']) && isset($_POST['description']) && isset($_POST['release']) ){
         $selectedBook->upload_book($conn,$_POST['name'],$_POST['description'],$_POST['release'],$_POST['iro']);
         $lastBook=$selectedBook->get_lastId($conn);
         $target_dir = "bookCovers/";

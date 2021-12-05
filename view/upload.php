@@ -1,4 +1,4 @@
-<form action="index.php/?page=upload" method="post">
+<form action="index.php?page=upload" method="post" enctype="multipart/form-data">
     Cím:<input type="text" name="name"><br>
     Leírás:<input type="text" name="description"><br>
     Kiadás: <input type="date" name="release"><br>
