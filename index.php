@@ -1,8 +1,17 @@
 <?php 
     session_start();
-    require 'Includes/db.inc.php';
+    require 'includes/db.inc.php';
 
     $page = 'index';
+
+    if(!empty($_SESSION["id"])) {
+        $szoveg = $_SESSION["nev"].": Kilépés";
+        $action = "kilepes";
+    }
+    else {
+            $szoveg = "Belépés";
+            $action = "belepes";        
+    } 
 
     // router
     if(isset($_REQUEST['page'])) {
@@ -16,12 +25,12 @@
                         );
 
     $title = $menu[$page];
-    include 'Includes/header.inc.php';
+    include 'includes/header.inc.php';
 ?>
 
 <body>
 <?php
-    include 'Includes/menu.inc.php';
+    include 'includes/menu.inc.php';
     include 'controller/'.$page.'.php';
 ?>
 </body>

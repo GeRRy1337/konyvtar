@@ -1,0 +1,3 @@
+<?
+    include 'view/index.php';
+?>
