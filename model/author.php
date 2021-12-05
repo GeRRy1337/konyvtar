@@ -15,8 +15,7 @@
                     $this->id = $row['id'];
                     $this->name = $row['name'];
                     $this->description = $row['description'];
-                    $this->releaseDate = $row['releaseDate'];
-                    $this->authorId = $row['author_id'];
+                    $this->birth = $row['DateOfBirth'];
                 }
             }
             else {
