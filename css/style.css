@@ -24,3 +24,18 @@ body{
         height: 10rem;
     }
 }
+
+.bookContainer{
+    width:100%;
+    text-align: center;
+}
+
+#infoImg{
+    height: 20rem;
+}
+
+@media screen and (max-height: 700px) {
+    #infoImg{
+        height: 10rem;
+    }
+}

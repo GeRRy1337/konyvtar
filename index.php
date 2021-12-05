@@ -3,6 +3,9 @@
     require 'includes/db.inc.php';
     require 'model/user.php';
     $user= new User();
+
+    require 'model/book.php';
+    $selectedBook= new Book();
     
     $page = 'index';
 
@@ -29,8 +32,9 @@
     $menu = array('index' => "Főoldal", 
                   'userControl' => $szoveg
                 );
-
-    $title = $menu[$page];
+    if(in_array($page,$menu)){
+        $title = $menu[$page];
+    }else $title=$page;
     include 'includes/header.inc.php';
 ?>
 
