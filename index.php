@@ -1,11 +1,17 @@
 <?php 
     session_start();
     require 'includes/db.inc.php';
-
+    require 'model/user.php';
+    $user= new User();
+    
     $page = 'index';
 
+    if(!empty($_REQUEST['action'])) {
+        if($_REQUEST['action'] == 'Kilépés') session_unset();
+    }
+
     if(!empty($_SESSION["id"])) {
-        $szoveg = $_SESSION["nev"].": Kilépés";
+        $szoveg = $_SESSION["username"].": Kilépés";
         $action = "kilepes";
     }
     else {
