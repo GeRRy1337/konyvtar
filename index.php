@@ -1,7 +1,7 @@
 <?php 
     session_start();
     
-    require 'Includes/db.inc.php;
+    require 'Includes/db.inc.php';
 
 
     $page = 'index';
