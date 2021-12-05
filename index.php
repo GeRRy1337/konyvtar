@@ -9,6 +9,8 @@
 
     require 'model/author.php';
     $author= new Author();
+    
+    $authorList=$author->authorList($conn);
 
     require 'model/Admin.php';
     $admin = new Admin();
