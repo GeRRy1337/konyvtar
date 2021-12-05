@@ -1,4 +1,4 @@
-<form action="index.php/?page=feltoltes" method="post">
+<form action="index.php/?page=upload" method="post">
     Cím:<input type="text" name="name"><br>
     Leírás:<input type="text" name="description"><br>
     Kiadás: <input type="date" name="release"><br>
@@ -6,9 +6,13 @@
         <?php 
             foreach($authorList as $id){
                 $author->set_author($id,$conn);
-                echo '<option value"'.$id.'">'.$author->get_name().' ('.$author->get_birth().')'.'</option>';
+                echo '<option value="'.$id.'">'.$author->get_name().' ('.$author->get_birth().')'.'</option>';
+            }
+            foreach($authorList as $id){
+                echo $id;   
             }
         ?>
-    </select>
+    </select><br>
+    <input type="file" name="fileToUpload" id="fileToUpload"><br>
     <input type="submit">
 </form>

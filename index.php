@@ -9,7 +9,7 @@
 
     require 'model/author.php';
     $author= new Author();
-    
+
     $authorList=$author->authorList($conn);
 
     require 'model/Admin.php';
@@ -40,12 +40,14 @@
     }
 
     $menu = array('index' => "Főoldal", 
-                  'upload' => "Könyv kezelés",
+                  'upload' => "Könyv hozzáadása",
+                  'authUpload' => "Író hozzáadása",
                   'userControl' => $szoveg,
                 );
     if(in_array($page,$menu)){
         $title = $menu[$page];
     }else $title=$page;
+
     include 'includes/header.inc.php';
 ?>
 

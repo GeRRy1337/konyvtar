@@ -59,12 +59,23 @@
             return $list;
         }
 
-        public function upload_book($conn){
-            $sql = "INSERT INTO $this->table VALUES($id) ";
+        public function upload_book($conn,$name,$description,$release,$author){
+            $sql = "INSERT INTO books(name,description,releaseDate,author_id) VALUES('$name','$description','$release','$author') ";
             if($result = $conn->query($sql)) {
                 echo 'Sikeres feltöltés';
-            }else{
-                echo 'Hiba a feltöltés közben';
+            }else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
+
+        public function get_lastId($conn){
+            $sql = "SELECT id FROM books ORDER BY id DESC limit 1";
+            $result = $conn->query($sql);
+            if ($conn->query($sql)) {
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    return $row['id'];
+                }
             }
         }
     }
