@@ -6,6 +6,9 @@
 
     require 'model/book.php';
     $selectedBook= new Book();
+
+    require 'model/author.php';
+    $author= new Author();
     
     $page = 'index';
 
