@@ -1,3 +1,26 @@
 body{
     padding-top: 60px;
 }
+
+.bookTable{
+    display:flex;
+    flex-flow: row wrap;
+    justify-content:space-around;
+    gap:2%;
+    padding: 0 1%;
+}
+
+.bookItem{
+    border: 2px solid black;
+    text-align: center;
+}
+
+.bookItem img{
+    height: 20rem;
+}
+
+@media screen and (max-height: 700px) {
+    .bookItem img{
+        height: 10rem;
+    }
+}

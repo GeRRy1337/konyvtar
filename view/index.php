@@ -1,35 +1,20 @@
-<table>   
+<div class="bookTable">   
         <?php
-
         if ($bookIds) {
-            $sor = 0;
-            foreach($bookIds as $row) {
-                $tanulo->set_user($row, $conn);
-                if($tanulo->get_sor() != $sor) {
-                    if($sor != 0) echo '</tr>';
-                    echo '<tr>';
-                    $sor = $tanulo->get_sor();
+            foreach($bookIds as $bookId) {
+                if(! $selectedBook){
+                    echo '<span class="bookItem">'. $bookId .'</span>';
                 }
-                if(!$tanulo->get_nev()) echo '<td class="empty"></td>';
-                else {
-                    $plusz = '';
-                    if(in_array($row, $hianyzok)) $plusz .=  ' class="missing"';
-                    if($row == $en) $plusz .=  ' id="me"';
-                    if($row == $tanar) $plusz .=  ' colspan="2"';
-                    echo "<td".$plusz.">" . $tanulo->get_nev();
-                    if(!empty($_SESSION["id"])) {
-                        if(in_array($_SESSION["id"], $adminok)) {
-                            if(in_array($row, $hianyzok)) echo '<br><a href="index.php?page=ulesrend&nem_hianyzo='.$row.'">Nem hiányzó</a>';
-                        }
-                    }
-                    echo "</td>";
+                else{
+                    $selectedBook->set_book($bookId,$conn);
+                    echo ' <span class="bookItem"><a href="index.php?page=bookInfo&bookId='.$bookId.'"><img src=bookCovers/'.$bookId.'.png></a><br>'. $selectedBook->get_name() .'</span>';
                 }
             }
-        } 
+        }
         else {
             echo "0 results";
         }
         $conn->close();
 
         ?>
-</table>
+</div>
