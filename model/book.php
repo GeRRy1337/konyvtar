@@ -58,6 +58,15 @@
             }
             return $list;
         }
+
+        public function upload_book($conn){
+            $sql = "INSERT INTO $this->table VALUES($id) ";
+            if($result = $conn->query($sql)) {
+                echo 'Sikeres feltöltés';
+            }else{
+                echo 'Hiba a feltöltés közben';
+            }
+        }
     }
 
 ?>

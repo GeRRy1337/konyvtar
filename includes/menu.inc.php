@@ -6,14 +6,26 @@
     <ul class="navbar-nav mr-auto">
       <?php
         foreach($menu as $key => $value) {
-            $active = '';
-            if($_SERVER['REQUEST_URI'] == '/konyvtar/'.$key) $active = ' active';
-            if($key == 'felhasznalo') $key.='&action='.$action;
+          $active = '';
+          if($_SERVER['REQUEST_URI'] == '/konyvtar/'.$key) $active = ' active';
+          if($key == 'userControl') $key.='&action='.$action;
+          if($key != 'feltoltes'){ 
       ?>
             <li class="nav-item<?php echo $active; ?>">
                 <a class="nav-link" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
             </li>
       <?php
+          }else{
+            if(!empty($_SESSION['id'])){
+              if(in_array($_SESSION['id'],$adminList)){
+                ?>
+                  <li class="nav-item<?php echo $active; ?>">
+                    <a class="nav-link" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
+                  </li>
+                <?php
+              }
+            }
+          }
         }
       ?>
     </ul>

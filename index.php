@@ -9,7 +9,12 @@
 
     require 'model/author.php';
     $author= new Author();
-    
+
+    require 'model/Admin.php';
+    $admin = new Admin();
+
+    $adminList = $admin->lista($conn);
+
     $page = 'index';
 
     if(!empty($_REQUEST['action'])) {
@@ -33,7 +38,8 @@
     }
 
     $menu = array('index' => "Főoldal", 
-                  'userControl' => $szoveg
+                  'upload' => "Könyv kezelés",
+                  'userControl' => $szoveg,
                 );
     if(in_array($page,$menu)){
         $title = $menu[$page];
