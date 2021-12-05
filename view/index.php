@@ -7,8 +7,12 @@
                 }
                 else{
                     $selectedBook->set_book($bookId,$conn);
-                    echo ' <span class="bookItem"><a href="index.php?page=bookInfo&bookId='.$bookId.'"><img src=bookCovers/'.$bookId.'.png></a><br>'. $selectedBook->get_name() .'</span>';
+                    if($search!=''){
+                        if(strpos(mb_strtolower($selectedBook->get_name()),mb_strtolower($search))>-1)
+                            echo ' <span class="bookItem"><a href="index.php?page=bookInfo&bookId='.$bookId.'"><img src=bookCovers/'.$bookId.'.png></a><br>'. $selectedBook->get_name() .'</span>';
+                    }else echo ' <span class="bookItem"><a href="index.php?page=bookInfo&bookId='.$bookId.'"><img src=bookCovers/'.$bookId.'.png></a><br>'. $selectedBook->get_name() .'</span>';
                 }
+                
             }
         }
         else {
