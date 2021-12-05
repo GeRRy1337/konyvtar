@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_POST['user']) and isset($_POST['password'])) {
+if(isset($_POST['user']) and isset($_POST['pw'])) {
 	$loginError = '';
 	if(strlen($_POST['user']) == 0) $loginError .= "Nem írtál be felhasználónevet<br>";
 	if(strlen($_POST['pw']) == 0) $loginError .= "Nem írtál be jelszót<br>";
