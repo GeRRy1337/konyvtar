@@ -9,7 +9,7 @@
           $active = '';
           if($_SERVER['REQUEST_URI'] == '/konyvtar/'.$key) $active = ' active';
           if($key == 'userControl') $key.='&action='.$action;
-          if($key != 'feltoltes'){ 
+          if(!in_array($key,$prohibited)){ 
       ?>
             <li class="nav-item<?php echo $active; ?>">
                 <a class="nav-link" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>

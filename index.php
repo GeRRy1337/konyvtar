@@ -44,6 +44,7 @@
                   'authUpload' => "Író hozzáadása",
                   'userControl' => $szoveg,
                 );
+    $prohibited=array('upload','authUpload');
     if(in_array($page,$menu)){
         $title = $menu[$page];
     }else $title=$page;
