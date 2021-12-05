@@ -1,6 +1,8 @@
 <?php 
     session_start();
-    require 'Includes/header.inc.php';
+    
+    require 'Includes/db.inc.php;
+
 
     $page = 'index';
 
@@ -16,12 +18,12 @@
                         );
 
     $title = $menupontok[$page];
-    include 'includes/header.inc.php';
+    include 'Includes/header.inc.php';
 ?>
 
 <body>
 <?php
-    include 'includes/menu.inc.php';
+    include 'Includes/menu.inc.php';
     include 'controller/'.$page.'.php';
 ?>
 </body>
