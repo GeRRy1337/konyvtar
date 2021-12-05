@@ -3,19 +3,23 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
       <?php
         foreach($menu as $key => $value) {
             $active = '';
             if($_SERVER['REQUEST_URI'] == '/konyvtar/'.$key) $active = ' active';
             if($key == 'felhasznalo') $key.='&action='.$action;
-            ?>
+      ?>
             <li class="nav-item<?php echo $active; ?>">
                 <a class="nav-link" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
             </li>
-            <?php
+      <?php
         }
       ?>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Keresés" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Keresés</button>
+    </form>
   </div>
 </nav>
