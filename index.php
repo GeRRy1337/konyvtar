@@ -40,7 +40,7 @@
     }
 
     $menu = array('index' => "Főoldal", 
-                  'userProfile' => "Felhaszánóli profil",
+                  'userProfile' => "Felhasználói profil",
                   'userControl' => $szoveg,
                 );
     $prohibited=array('upload','authUpload');

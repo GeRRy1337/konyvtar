@@ -14,15 +14,21 @@ body{
     border: 2px solid black;
     text-align: center;
     margin-bottom: 3em;
+    width: 15rem;
 }
 
 .bookItem img{
     height: 20rem;
+    max-width: 15rem;
 }
 
 @media screen and (max-height: 700px) {
     .bookItem img{
         height: 10rem;
+        max-width: 10rem;
+    }
+    .bookItem{
+        width: 10rem;
     }
 }
 

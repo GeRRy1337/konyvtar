@@ -1,3 +1,3 @@
 <?php 
-    echo 'Üdvözöllek: '.$_SESSION['name'];
+    echo 'Üdvözöllek '.$_SESSION['username']. '!';
 ?>
