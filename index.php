@@ -5,7 +5,7 @@
     $user= new User();
 
     require 'model/book.php';
-    $selectedBook= new Book();
+    $BookVar= new Book();
 
     require 'model/author.php';
     $author= new Author();
@@ -40,8 +40,7 @@
     }
 
     $menu = array('index' => "Főoldal", 
-                  'upload' => "Könyv hozzáadása",
-                  'authUpload' => "Író hozzáadása",
+                  'userProfile' => "Felhaszánóli profil",
                   'userControl' => $szoveg,
                 );
     $prohibited=array('upload','authUpload');

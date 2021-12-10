@@ -1,8 +1,6 @@
 <div class="bookContainer">
-    <img id="infoImg" src=<?php echo 'bookCovers/'.$selectedBook->get_id().'.png';?>>
-    <h1><?php echo $selectedBook->get_name();?></h1>
-    <p><?php echo $selectedBook->get_description();?></p>
+    <img id="infoImg" src=<?php echo $BookVar->get_ImageUrlL();?>>
+    <h1><?php echo $BookVar->get_BookTitle();?></h1>
     <hr>
-    <p><?php echo 'Írta: '.$author->get_name().' ('.$author->get_birth().')' ?></p>
-    <p><?php echo $author->get_description();?></p>
+    <p><?php echo 'Írta: '.$BookVar->get_BookAuthor()?></p>
 </div>

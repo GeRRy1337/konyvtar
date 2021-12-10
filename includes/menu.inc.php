@@ -9,7 +9,7 @@
           $active = '';
           if($_SERVER['REQUEST_URI'] == '/konyvtar/'.$key) $active = ' active';
           if($key == 'userControl') $key.='&action='.$action;
-          if(!in_array($key,$prohibited)){ 
+          if($key!='userProfile')){ 
       ?>
             <li class="nav-item<?php echo $active; ?>">
                 <a class="nav-link" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
@@ -17,13 +17,11 @@
       <?php
           }else{
             if(!empty($_SESSION['id'])){
-              if(in_array($_SESSION['id'],$adminList)){
-                ?>
-                  <li class="nav-item<?php echo $active; ?>">
-                    <a class="nav-link" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
-                  </li>
-                <?php
-              }
+              ?>
+              <li class="nav-item<?php echo $active; ?>">
+                  <a class="nav-link" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
+              </li>
+              <?php
             }
           }
         }

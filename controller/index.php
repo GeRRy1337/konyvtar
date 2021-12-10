@@ -1,6 +1,6 @@
 <?php
     $search='';
-    $bookIds=$selectedBook->bookList($conn);
+    $bookIds=$BookVar->bookList($conn);
     if(!empty($_POST['search'])){
         $search=$_POST['search'];
     }

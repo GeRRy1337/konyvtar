@@ -2,15 +2,15 @@
         <?php
         if ($bookIds) {
             foreach($bookIds as $bookId) {
-                if(! $selectedBook){
+                if(! $BookVar){
                     echo '<span class="bookItem">'. $bookId .'</span>';
                 }
                 else{
-                    $selectedBook->set_book($bookId,$conn);
+                    $BookVar->set_book($bookId,$conn);
                     if($search!=''){
-                        if(strpos(mb_strtolower($selectedBook->get_name()),mb_strtolower($search))>-1)
-                            echo ' <span class="bookItem"><a href="index.php?page=bookInfo&bookId='.$bookId.'"><img src=bookCovers/'.$bookId.'.png></a><br>'. $selectedBook->get_name() .'</span>';
-                    }else echo ' <span class="bookItem"><a href="index.php?page=bookInfo&bookId='.$bookId.'"><img src=bookCovers/'.$bookId.'.png></a><br>'. $selectedBook->get_name() .'</span>';
+                        if((strpos(mb_strtolower($BookVar->get_BookTitle()),mb_strtolower($search))>-1)||(strpos(mb_strtolower($BookVar->get_BookAuthor()),mb_strtolower($search))>-1))
+                            echo ' <span class="bookItem"><a href="index.php?page=bookInfo&bookId='.$bookId.'"><img src='.$BookVar->get_ImageUrlL().'></a><br>'. $BookVar->get_BookTitle() .'</span>';
+                    }else echo ' <span class="bookItem"><a href="index.php?page=bookInfo&bookId='.$bookId.'"><img src='.$BookVar->get_ImageUrlL().'></a><br>'. $BookVar->get_BookTitle() .'</span>';
                 }
                 
             }
