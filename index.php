@@ -35,7 +35,7 @@
     // router
     if(isset($_REQUEST['page'])) {
         if(file_exists('controller/'.$_REQUEST['page'].'.php')) {
-                $page = $_REQUEST['page']; 
+                $page = $_REQUEST['page'];
         }
     }
 
