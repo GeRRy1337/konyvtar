@@ -39,6 +39,11 @@
         }
     }
 
+    if(isset($_REQUEST['search'])) {
+        $_SESSION['search']='';
+        $_SESSION['indexPage']=1;
+    }
+
     $menu = array('index' => "Főoldal", 
                   'userProfile' => "Felhasználói profil",
                   'userControl' => $szoveg,

@@ -1,9 +1,10 @@
 <?php
     $bookIds=$BookVar->bookList($conn);
     if(!empty($_POST['search'])){
-        $_SESSION['search']=$_POST['search'];
         $_SESSION['indexPage']=1;
-        header("Location:index.php?page=index");
+        $_SESSION['search']=$_POST['search'];
+        $bookIds=$BookVar->bookList($conn);
+        header('Location:index.php?page=index');
     }
     if(isset($_POST['switchPage'])){
         $_SESSION['indexPage']=$_POST['switchPage'];

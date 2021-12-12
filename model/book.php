@@ -71,8 +71,11 @@
         }
 
         public function bookList($conn) {
+            if(!isset($_SESSION['indexPage'])) $_SESSION['indexPage']=1;
+            $search=$_SESSION['search'] or '';
             $list = array();
-            $sql = "SELECT id FROM books";
+            $sql = "SELECT id FROM books where BookTitle like('%".$search."%') or BookAuthor like ('%".$search."%') limit ".(($_SESSION['indexPage']-1)*40).",40";
+            echo $sql;
             if($result = $conn->query($sql)) {
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
