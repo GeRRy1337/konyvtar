@@ -8,8 +8,6 @@
         private $BookAuthor;
         private $YearOfPublication;
         private $publisher;
-        private $ImageUrlS;
-        private $ImageUrlM;
         private $ImageUrlL;
 
         public function set_book($id, $conn) {
@@ -22,11 +20,9 @@
                     $this->id = $row['id'];
                     $this->ISBN = $row['ISBN'];
                     $this->BookTitle = $row['BookTitle'];
-                    $this->BookAuthor = $row['BookAuthor'];
+                    $this->BookAuthor = $conn->query("SELECT name FROM author where id=".$row['AuthorId'])->fetch_assoc()['name'];
                     $this->YearOfPublication = $row['YearOfPublication'];
                     $this->publisher = $row['Publisher'];
-                    $this->ImageUrlS = $row['ImageUrlS'];
-                    $this->ImageUrlM = $row['ImageUrlM'];
                     $this->ImageUrlL = $row['ImageUrlL'];
                 }
             }
@@ -59,26 +55,43 @@
             return $this->publisher;
         }
         
-        public function get_ImageUrlS() {
-            return $this->ImageUrlS;
-        }
-
-        public function get_ImageUrlM() {
-            return $this->ImageUrlM;
-        }
         public function get_ImageUrlL() {
             return $this->ImageUrlL;
+        }
+
+        public function inStock($conn){
+            $sql = "SELECT count(stockNum) as inStock from stock where bookId=".$this->get_id();
+            if($result = $conn->query($sql)) {
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    return $row['inStock'];   
+                }
+            }
+            return 0;
         }
 
         public function bookList($conn) {
             if(!isset($_SESSION['indexPage'])) $_SESSION['indexPage']=1;
             $search=$_SESSION['search'] or '';
             $list = array();
-            $sql = "SELECT id FROM books where BookTitle like('%".$search."%') or BookAuthor like ('%".$search."%') limit ".(($_SESSION['indexPage']-1)*40).",40";
+            $sql = "SELECT books.id FROM books inner join author on AuthorId=author.id where BookTitle like('%".$search."%') or author.name like ('%".$search."%') limit ".(($_SESSION['indexPage']-1)*40).",40";
             if($result = $conn->query($sql)) {
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         $list[] = $row['id'];
+                    }
+                }
+            }
+            return $list;
+        }
+
+        public function borrowedList($conn) {
+            $list = array();
+            $sql = "SELECT stockNum,date FROM borrow where stockNum in (Select stockNum from stock where bookId=".$this->get_id().") and state=0";
+            if($result = $conn->query($sql)) {
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        $list[] = array($row['stockNum'],$row['date']);
                     }
                 }
             }
