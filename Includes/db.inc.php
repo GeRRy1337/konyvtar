@@ -1,8 +1,8 @@
 <?php
 
 $servername = "localhost";
-$username = "phpAdmin";
-$password = "5mtYrEd0j1nWomRb";
+$username = "root";
+$password = "";
 $dbname = "konyvtar";
 
 // Create connection

@@ -6,7 +6,7 @@
         private $birth;
         
         public function set_author($id, $conn) {
-            $sql = "SELECT *  FROM authors";
+            $sql = "SELECT *  FROM author";
             $sql .= " WHERE id = $id ";
             $result = $conn->query($sql);
             if ($conn->query($sql)) {
@@ -14,8 +14,7 @@
                     $row = $result->fetch_assoc();
                     $this->id = $row['id'];
                     $this->name = $row['name'];
-                    $this->description = $row['description'];
-                    $this->birth = $row['DateOfBirth'];
+                    $this->birth = $row['birthDate'];
                 }
             }
             else {
@@ -41,7 +40,7 @@
 
         public function authorList($conn) {
             $list = array();
-            $sql = "SELECT id FROM authors order by name asc";
+            $sql = "SELECT id FROM author order by name asc";
             if($result = $conn->query($sql)) {
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
@@ -54,7 +53,7 @@
 
         public function writtenBooks($conn,$id) {
             $list = array();
-            $sql = "SELECT id FROM books where author_id=".$id;
+            $sql = "SELECT id FROM books where id=".$id;
             if($result = $conn->query($sql)) {
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
@@ -65,8 +64,8 @@
             return $list;
         }
 
-        public function upload_author($conn,$name,$description,$birthDate){
-            $sql = "INSERT INTO authors(name,description,DateOfBirth) VALUES('$name','$description','$birthDate') ";
+        public function upload_author($conn,$name,$birthDate){
+            $sql = "INSERT INTO author(name,birthDate) VALUES('$name','$birthDate') ";
             if($result = $conn->query($sql)) {
                 echo 'Sikeres feltöltés';
             }else {
