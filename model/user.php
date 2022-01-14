@@ -17,7 +17,14 @@
                     $this->id = $row['id'];
                     $this->username = $row['username'];
                     $this->password = $row['password'];
-                    $this->cardId = $row['cardId'];
+                    $this->cardId = -1;
+                    $result = $conn->query("SELECT cardId from usercards where userId=4");
+                    if ($result){ 
+                        if ($result->num_rows > 0){
+                            $this->cardId = $result->fetch_assoc()['cardId'];
+                        }
+                    }
+                           
                 }
             }
             else {
@@ -39,6 +46,19 @@
 
         public function get_cardId(){
             return $this->cardId;
+        }
+
+        public function userBorrowed($conn) {
+            $list = array();
+            $sql = "SELECT BookTitle,stock.stockNum,date FROM borrow inner join stock on borrow.stockNum=stock.stockNum inner JOIN books on stock.bookId=books.id where cardNum = ".$this->cardId." and state=0";
+            if($result = $conn->query($sql)) {
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        $list[] = array($row['BookTitle'],$row['stockNum'],$row['date']);
+                    }
+                }
+            }
+            return $list;
         }
 
     }//class

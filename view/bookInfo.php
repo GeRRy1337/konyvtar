@@ -38,9 +38,9 @@
         ?>
             </tbody>
         </table>
-        <?php
-            }
-        ?>
         </div>
     </div>
+    <?php
+        }
+    ?>
 </div>
