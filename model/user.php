@@ -18,7 +18,7 @@
                     $this->username = $row['username'];
                     $this->password = $row['password'];
                     $this->cardId = -1;
-                    $result = $conn->query("SELECT cardId from usercards where userId=4");
+                    $result = $conn->query("SELECT cardId from usercards where userId=".$row['id']);
                     if ($result){ 
                         if ($result->num_rows > 0){
                             $this->cardId = $result->fetch_assoc()['cardId'];
