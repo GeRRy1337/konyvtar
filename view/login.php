@@ -1,3 +1,4 @@
+<div class="container">
 <?php
     if(!empty($_SESSION["id"])) {
         ?>
@@ -18,8 +19,11 @@
             <br>
             Jelszó: <br><input type="password" name="pw">
             <br>
+            <a href="index.php?page=userControl&register=true">Nincs felhasználód? Regisztrálj!</a>
+            <br>
         <input type="submit">
         </form>
         <?php						
     }
 ?>
+</div>

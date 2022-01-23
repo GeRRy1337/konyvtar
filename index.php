@@ -44,6 +44,12 @@
         $_SESSION['indexPage']=1;
     }
 
+    if(isset($_REQUEST['register']) and isset( $_SESSION['register']) and $_SESSION['register']==false) {
+        $_SESSION['register']=true;
+    }elseif(!isset($_REQUEST['register']) and isset( $_SESSION['register']) and $_SESSION['register']==true) {
+        $_SESSION['register']=false;
+    }
+
     $menu = array('index' => "Főoldal", 
                   'userProfile' => "Felhasználói profil",
                   'userControl' => $szoveg,
