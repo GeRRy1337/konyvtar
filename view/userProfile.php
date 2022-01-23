@@ -40,7 +40,7 @@
     }else{
     ?>
 
-    <p>Nincs nálad kikölcsönzött könyved.</p>
+    <p>Nincs nálad kikölcsönzött könyv.</p>
 
     <?php
     }
