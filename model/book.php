@@ -72,6 +72,7 @@
 
         public function bookList($conn) {
             if(!isset($_SESSION['indexPage'])) $_SESSION['indexPage']=1;
+            if(!isset($_SESSION['search'])) $_SESSION['search']='';
             $search=$_SESSION['search'] or '';
             $list = array();
             $sql = "SELECT books.id FROM books inner join author on AuthorId=author.id where BookTitle like('%".$search."%') or author.name like ('%".$search."%') limit ".(($_SESSION['indexPage']-1)*40).",40";
