@@ -10,8 +10,12 @@ if(isset($_POST['user']) and isset($_POST['pw'])) {
 		if ($result->num_rows > 0) {
 			$loginError .= "Ez a felhasználónév már foglalt<br>";
 		}else{
-			
-			header('Location: index.php?page=userControl');
+			$sql = "INSERT INTO users(username,password,email) VALUES('".$_POST['user']."','".md5($_POST['pw'])."','".$_POST['email']."') ";
+			if(!$result = $conn->query($sql)) {
+				echo "Error: " . $sql . "<br>" . $conn->error;
+			}else{
+				header('Location: index.php?page=userControl');
+			}
 		}
 	}else{
 		if(strlen($_POST['user']) == 0) $loginError .= "Nem írtál be felhasználónevet<br>";
