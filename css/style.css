@@ -46,3 +46,7 @@ body{
         height: 10rem;
     }
 }
+
+#error{
+    color:red;
+}

@@ -7,20 +7,21 @@
         else echo "<h2>Regisztrácio</h2>";
 
         ?>
-        <form action="index.php?page=userControl" method="post">
-            Felhasználónév:<br><input type="text" name="user">
+        <form action="index.php?page=userControl&register=true" id="regForm" method="post">
+            Felhasználónév:<br><input type="text" name="user" required>
             <br>
-            Jelszó: <br><input type="password" name="pw">
+            Jelszó: <br><input type="password" name="pw" id="pw" required>
             <br>
-            Jelszó: <br><input type="password" name="pw2">
+            Jelszó: <br><input type="password" name="pw2" id="pw2" required>
             <br>
-            Email:<br><input type="text" name="email">
+            Email:<br><input type="text" name="email" required>
             <br>
+            <p id="error"></p>
             <a href="index.php?page=userControl">Bejelentkezés</a>
             <br>
-        <input type="submit">
+        <input type="submit" >
         </form>
-        <?php	
+        <?php
     }else{
         if(!empty($_SESSION["id"])) {
             ?>
@@ -50,3 +51,27 @@
     }
 ?>
 </div>
+<script>
+    document.getElementById('pw2').oninput=function(){
+        if( document.getElementById('pw').value != document.getElementById('pw2').value ){
+            document.getElementById('error').innerHTML="A jelszók nem egyeznek!";
+        }else{
+            document.getElementById('error').innerHTML="";
+        }
+    }
+    document.getElementById('pw').oninput=function(){
+        if( document.getElementById('pw').value != document.getElementById('pw2').value ){
+            document.getElementById('error').innerHTML="A jelszók nem egyeznek!";
+        }else{
+            document.getElementById('error').innerHTML="";
+        }
+    }
+    document.getElementById('regForm').onsubmit = function() {
+        if( document.getElementById('pw').value != document.getElementById('pw2').value ){
+            return false;
+        }
+
+        return true;
+    }
+    
+</script>
