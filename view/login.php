@@ -14,7 +14,7 @@
             <br>
             Jelszó: <br><input type="password" name="pw2" id="pw2" required>
             <br>
-            Email:<br><input type="text" name="email" required>
+            Email:<br><input type="text" id="regEmail" name="email" required>
             <br>
             <p id="error"></p>
             <a href="index.php?page=userControl">Bejelentkezés</a>
@@ -66,8 +66,34 @@
             document.getElementById('error').innerHTML="";
         }
     }
+    document.getElementById('regEmail').oninput=function(){
+        if( document.getElementById('regEmail').value.includes("@") ){
+            if(document.getElementById('regEmail').value.split("@")[1].includes(".")){
+                if(document.getElementById('regEmail').value.split("@")[1].split(".")[1].length>0){
+                    document.getElementById('error').innerHTML="";
+                }else{
+                    document.getElementById('error').innerHTML="Hibás email!";
+                }
+            }else{
+                document.getElementById('error').innerHTML="Hibás email!";
+            }
+        }else{
+            document.getElementById('error').innerHTML="Hibás email!";
+        }
+    }
     document.getElementById('regForm').onsubmit = function() {
         if( document.getElementById('pw').value != document.getElementById('pw2').value ){
+            return false;
+        }
+        if( document.getElementById('regEmail').value.includes("@") ){
+            if(document.getElementById('regEmail').value.split("@")[1].includes(".")){
+                if(document.getElementById('regEmail').value.split("@")[1].split(".")[1].length<1){
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }else{
             return false;
         }
 
