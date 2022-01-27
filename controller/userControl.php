@@ -4,7 +4,6 @@ if(isset($_POST['user']) and isset($_POST['pw'])) {
 	$loginError = '';
 	if(isset($_POST['pw2']) and isset($_POST['email'])){
 		$sql = "SELECT id FROM users WHERE username = '".$_POST['user']."' ";
-
 		if(!$result = $conn->query($sql)) echo $conn->error;
 
 		if ($result->num_rows > 0) {
@@ -22,7 +21,6 @@ if(isset($_POST['user']) and isset($_POST['pw'])) {
 		if(strlen($_POST['pw']) == 0) $loginError .= "Nem írtál be jelszót<br>";
 		if($loginError == '') {
 			$sql = "SELECT id FROM users WHERE username = '".$_POST['user']."' ";
-
 			if(!$result = $conn->query($sql)) echo $conn->error;
 
 			if ($result->num_rows > 0) {
