@@ -5,9 +5,15 @@
             <h1><?php echo $BookVar->get_BookTitle();?></h1>
             <hr>
             <p><?php echo 'Írta: '.$BookVar->get_BookAuthor()?></p>
-            <form action="index.php?page=bookInfo&bookId=<?php echo $BookVar->get_id();?>" method="POST">
-                <input type="submit" value="Kedvencek">
-            </form>
+            <?php  
+                if (isset($_SESSION['id'])){
+            ?>
+                <form action="index.php?page=bookInfo&bookId=<?php echo $BookVar->get_id();?>" method="POST">
+                    <input type="submit" value="Kedvencek">
+                </form>
+            <?php
+                }
+            ?>
             <hr>
             <h2>Könyvek száma:<?php echo $BookVar->inStock($conn);?></h2>
         </div>
