@@ -3,18 +3,23 @@
 if(isset($_POST['user']) and isset($_POST['pw'])) {
 	$loginError = '';
 	if(isset($_POST['pw2']) and isset($_POST['email'])){
-		$sql = "SELECT id FROM users WHERE username = '".$_POST['user']."' ";
-
-		if(!$result = $conn->query($sql)) echo $conn->error;
-
-		if ($result->num_rows > 0) {
-			$loginError .= "Ez a felhasználónév már foglalt<br>";
-		}else{
-			$sql = "INSERT INTO users(username,password,email) VALUES('".$_POST['user']."','".md5($_POST['pw'])."','".$_POST['email']."') ";
-			if(!$result = $conn->query($sql)) {
-				echo "Error: " . $sql . "<br>" . $conn->error;
+		$email=$_POST['email'];
+		if(!strpos($email,"@") or !strpos($email,".") or strlen(explode(".",explode("@",$email)[1])[0])<1 or strlen(explode(".",explode("@",$email)[1])[1])<1){
+			$loginError .= "Hibás email!<br>";
+		}
+		if($loginError == '') {
+			$sql = "SELECT id FROM users WHERE username = '".$_POST['user']."' ";
+			if(!$result = $conn->query($sql)) echo $conn->error;
+			
+			if ($result->num_rows > 0) {
+				$loginError .= "Ez a felhasználónév már foglalt<br>";
 			}else{
-				header('Location: index.php?page=userControl');
+				$sql = "INSERT INTO users(username,password,email) VALUES('".$_POST['user']."','".md5($_POST['pw'])."','".$_POST['email']."') ";
+				if(!$result = $conn->query($sql)) {
+					echo "Error: " . $sql . "<br>" . $conn->error;
+				}else{
+					header('Location: index.php?page=userControl');
+				}
 			}
 		}
 	}else{
@@ -22,7 +27,6 @@ if(isset($_POST['user']) and isset($_POST['pw'])) {
 		if(strlen($_POST['pw']) == 0) $loginError .= "Nem írtál be jelszót<br>";
 		if($loginError == '') {
 			$sql = "SELECT id FROM users WHERE username = '".$_POST['user']."' ";
-
 			if(!$result = $conn->query($sql)) echo $conn->error;
 
 			if ($result->num_rows > 0) {

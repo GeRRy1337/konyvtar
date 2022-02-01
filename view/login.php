@@ -68,9 +68,13 @@
     }
     document.getElementById('regEmail').oninput=function(){
         if( document.getElementById('regEmail').value.includes("@") ){
-            if(document.getElementById('regEmail').value.split("@")[1].includes(".")){
-                if(document.getElementById('regEmail').value.split("@")[1].split(".")[1].length>0){
-                    document.getElementById('error').innerHTML="";
+            if(document.getElementById('regEmail').value.split("@")[1].split(".")[0].length>0){
+                if(document.getElementById('regEmail').value.split("@")[1].includes(".")){
+                    if(document.getElementById('regEmail').value.split("@")[1].split(".")[1].length>0){
+                        document.getElementById('error').innerHTML="";
+                    }else{
+                        document.getElementById('error').innerHTML="Hibás email!";
+                    }
                 }else{
                     document.getElementById('error').innerHTML="Hibás email!";
                 }
@@ -86,11 +90,15 @@
             return false;
         }
         if( document.getElementById('regEmail').value.includes("@") ){
-            if(document.getElementById('regEmail').value.split("@")[1].includes(".")){
-                if(document.getElementById('regEmail').value.split("@")[1].split(".")[1].length<1){
+            if(document.getElementById('regEmail').value.split("@")[1].split(".")[0].length>0){
+                if(document.getElementById('regEmail').value.split("@")[1].includes(".")){
+                    if(document.getElementById('regEmail').value.split("@")[1].split(".")[1].length<1){
+                        return false;
+                    }
+                }else{
                     return false;
                 }
-            }else{
+            } else {
                 return false;
             }
         }else{
