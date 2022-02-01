@@ -52,9 +52,19 @@ body{
 }
 
 #favButtonOn{
-    background-color: red;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0OHY0OEgweiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxwYXRoIGQ9Im0yNCA0Mi43LTIuOS0yLjYzQzEwLjggMzAuNzIgNCAyNC41NSA0IDE3IDQgMTAuODMgOC44MyA2IDE1IDZjMy40OCAwIDYuODIgMS42MiA5IDQuMTdDMjYuMTggNy42MiAyOS41MiA2IDMzIDZjNi4xNyAwIDExIDQuODMgMTEgMTEgMCA3LjU1LTYuOCAxMy43Mi0xNy4xIDIzLjA3TDI0IDQyLjd6IiBmaWxsPSIjZmYwMDAwIiBjbGFzcz0iZmlsbC0wMDAwMDAiPjwvcGF0aD48L3N2Zz4=");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 2em;
+    border: none;
 }
 
 #favButtonOff{
-    background-color: gray;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0OHY0OEgweiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxwYXRoIGQ9Im0yNCA0Mi43LTIuOS0yLjYzQzEwLjggMzAuNzIgNCAyNC41NSA0IDE3IDQgMTAuODMgOC44MyA2IDE1IDZjMy40OCAwIDYuODIgMS42MiA5IDQuMTdDMjYuMTggNy42MiAyOS41MiA2IDMzIDZjNi4xNyAwIDExIDQuODMgMTEgMTEgMCA3LjU1LTYuOCAxMy43Mi0xNy4xIDIzLjA3TDI0IDQyLjd6IiBmaWxsPSIjN2Q3ZDdkIiBjbGFzcz0iZmlsbC0wMDAwMDAgZmlsbC1mZjAwMDAiPjwvcGF0aD48L3N2Zz4=");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 2em;
+    border: none;
 }
