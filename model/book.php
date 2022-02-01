@@ -80,7 +80,18 @@
             return false;
         }
 
-        
+        public function setFav($conn,$userId){
+            $sql = "INSERT INTO favourite(bId,uId) VALUES($this->get_id(),$userId) ";
+            if($result = $conn->query($sql)) {
+                return true;
+            }else {
+                return false;
+            }
+        }
+
+        public function delFav($conn,$userId){
+            
+        }
 
         public function bookList($conn) {
             if(!isset($_SESSION['indexPage'])) $_SESSION['indexPage']=1;
