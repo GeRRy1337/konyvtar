@@ -50,3 +50,11 @@ body{
 #error{
     color:red;
 }
+
+#favButtonOn{
+    background-color: red;
+}
+
+#favButtonOff{
+    background-color: gray;
+}

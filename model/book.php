@@ -70,6 +70,18 @@
             return 0;
         }
 
+        public function isFav($conn,$userId){
+            $sql = "SELECT bId from favourite where bId=".$this->get_id()." and uId=".$userId;
+            if($result = $conn->query($sql)) {
+                if ($result->num_rows > 0) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        
+
         public function bookList($conn) {
             if(!isset($_SESSION['indexPage'])) $_SESSION['indexPage']=1;
             if(!isset($_SESSION['search'])) $_SESSION['search']='';
