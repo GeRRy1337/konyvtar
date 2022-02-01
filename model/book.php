@@ -90,7 +90,12 @@
         }
 
         public function delFav($conn,$userId){
-            
+            $sql = "DELETE FROM favourite WHERE bId=$this->get_id() and uId=$userId ";
+            if($result = $conn->query($sql)) {
+                return true;
+            }else {
+                return false;
+            }
         }
 
         public function bookList($conn) {
