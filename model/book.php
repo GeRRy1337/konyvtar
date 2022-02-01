@@ -81,16 +81,18 @@
         }
 
         public function setFav($conn,$userId){
-            $sql = "INSERT INTO favourite(bId,uId) VALUES($this->get_id(),$userId) ";
+            $sql = "INSERT INTO favourite(bId,uId) VALUES( ".$this->get_id()." , ".$userId." ) ";
             if($result = $conn->query($sql)) {
                 return true;
             }else {
+                echo $conn->error;
                 return false;
             }
+            
         }
 
         public function delFav($conn,$userId){
-            $sql = "DELETE FROM favourite WHERE bId=$this->get_id() and uId=$userId ";
+            $sql = "DELETE FROM favourite WHERE bId=".$this->get_id()." and uId=".$userId;
             if($result = $conn->query($sql)) {
                 return true;
             }else {

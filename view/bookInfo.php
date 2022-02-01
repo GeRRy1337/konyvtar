@@ -9,7 +9,7 @@
                 if (isset($_SESSION['id'])){
             ?>
                 <form action="index.php?page=bookInfo&bookId=<?php echo $BookVar->get_id();?>" method="POST">
-                    <input type="submit" value="Kedvencek" id="<?php if($BookVar->isFav($conn,$_SESSION['id'])) echo 'favButtonOn'; else echo 'favButtonOff';?>" >
+                    <input type="submit" value="Kedvencek" <?php if($BookVar->isFav($conn,$_SESSION['id'])) echo 'id="favButtonOn" name="favButtonOn"'; else echo 'id="favButtonOff" name="favButtonOff"';?> >
                 </form>
             <?php
                 }
