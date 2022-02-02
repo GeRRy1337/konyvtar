@@ -15,7 +15,7 @@
                   <a class="nav-link" href="index.php?page=<?php echo $key; ?>&search=false"><?php echo $value; ?></a>
               </li>
             <?php
-          }elseif($key!='userProfile'){ 
+          }elseif($key!='userProfile' and $key!='favorites'){ 
       ?>
             <li class="nav-item<?php echo $active; ?>">
                 <a class="nav-link" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
