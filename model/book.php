@@ -100,6 +100,19 @@
             }
         }
 
+        public function favList($conn,$userId) {
+            $list = array();
+            $sql = "SELECT bId FROM favourite  where uId=".$userId;
+            if($result = $conn->query($sql)) {
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        $list[] = $row['bId'];
+                    }
+                }
+            }
+            return $list;
+        }
+
         public function bookList($conn) {
             if(!isset($_SESSION['indexPage'])) $_SESSION['indexPage']=1;
             if(!isset($_SESSION['search'])) $_SESSION['search']='';
