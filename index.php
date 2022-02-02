@@ -49,11 +49,11 @@
     }elseif(!isset($_REQUEST['register']) and isset( $_SESSION['register']) and $_SESSION['register']==true) {
         $_SESSION['register']=false;
     }
-    $menu = array('index' => "Főoldal", 
+    $menu = array('index' => "Főoldal",
+                  'favorites' => "Kedvencek",     
                   'userProfile' => "Felhasználói profil",
                   'userControl' => $szoveg,
                 );
-    $prohibited=array('upload','authUpload');
     if(in_array($page,$menu)){
         $title = $menu[$page];
     }else $title=$page;
