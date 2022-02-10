@@ -61,6 +61,8 @@
             echo 'Error: Unknow action!';
         }
         return;
+    }else{
+        echo "You don't have privileges to view this page!";
     }
 
 ?>
