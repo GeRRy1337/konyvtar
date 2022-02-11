@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    require 'includes/db.inc.php';
+    require 'Includes/db.inc.php';
     require 'model/user.php';
     $user= new User();
 
@@ -12,7 +12,7 @@
 
     $authorList=$author->authorList($conn);
 
-    require 'model/Admin.php';
+    require 'model/admin.php';
     $admin = new Admin();
 
     $adminList = $admin->lista($conn);
@@ -20,7 +20,7 @@
     $page = 'index';
 
     if(!empty($_REQUEST['action'])) {
-        if($_REQUEST['action'] == 'Kilépés') session_unset();
+        if($_REQUEST['action'] == 'logout') session_unset();
     }
 
     if(!empty($_SESSION["id"])) {
@@ -37,6 +37,8 @@
         if(file_exists('controller/'.$_REQUEST['page'].'.php')) {
                 $page = $_REQUEST['page'];
         }
+    }else{
+        header("location: index.php?page=index&search=false");
     }
 
     if(isset($_REQUEST['search'])) {
@@ -58,12 +60,12 @@
         $title = $menu[$page];
     }else $title=$page;
 
-    include 'includes/header.inc.php';
+    include 'Includes/header.inc.php';
 ?>
 
 <body>
 <?php
-    include 'includes/menu.inc.php';
+    include 'Includes/menu.inc.php';
     include 'controller/'.$page.'.php';
 ?>
 </body>
