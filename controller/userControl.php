@@ -2,6 +2,7 @@
 if(isset($_POST['user']) and isset($_POST['pw'])) {
 	$loginError = '';
 	if(isset($_POST['pw2']) and isset($_POST['email'])){
+		if($_POST['pw2']!=$_POST['pw']) $loginError.="A jelszók nem egyeznek!<br>";
 		$email=$_POST['email'];
 		if(!strpos($email,"@") or !strpos($email,".") or strlen(explode(".",explode("@",$email)[1])[0])<1 or strlen(explode(".",explode("@",$email)[1])[1])<1){
 			$loginError .= "Hibás email!<br>";
