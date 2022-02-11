@@ -128,6 +128,19 @@
             }
             return $list;
         }
+        public function getMax($conn) {
+            if(!isset($_SESSION['search'])) $_SESSION['search']='';
+            $search=$_SESSION['search'] or '';
+            $sql = "SELECT count(books.id) as maxNum FROM books inner join author on AuthorId=author.id where BookTitle like('%".$search."%') or author.name like ('%".$search."%') ";
+            if($result = $conn->query($sql)) {
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        return $row['maxNum']/40+1;
+                    }
+                }
+            }
+            return false;
+        }
 
         public function borrowedList($conn) {
             $list = array();
