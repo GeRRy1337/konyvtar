@@ -5,7 +5,6 @@
             echo $loginError;
         }
         else echo "<h2>Regisztrácio</h2>";
-
         ?>
         <form action="index.php?page=userControl&register=true" id="regForm" method="post">
             Felhasználónév:<br><input type="text" name="user" required>
@@ -45,20 +44,15 @@
 ?>
 </div>
 <script>
-    document.getElementById('pw2').oninput=function(){
+    function checkPass(){
         if( document.getElementById('pw').value != document.getElementById('pw2').value ){
             document.getElementById('error').innerHTML="A jelszók nem egyeznek!";
         }else{
             document.getElementById('error').innerHTML="";
         }
     }
-    document.getElementById('pw').oninput=function(){
-        if( document.getElementById('pw').value != document.getElementById('pw2').value ){
-            document.getElementById('error').innerHTML="A jelszók nem egyeznek!";
-        }else{
-            document.getElementById('error').innerHTML="";
-        }
-    }
+    document.getElementById('pw2').oninput=checkPass();
+    document.getElementById('pw').oninput=checkPass();
     document.getElementById('regEmail').oninput=function(){
         if( document.getElementById('regEmail').value.includes("@") ){
             if(document.getElementById('regEmail').value.split("@")[1].split(".")[0].length>0){
