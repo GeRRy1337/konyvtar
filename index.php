@@ -61,12 +61,11 @@
     }else $title=$page;
 
     include 'Includes/header.inc.php';
-?>
-
+    ?>
 <body>
-<?php
-    include 'Includes/menu.inc.php';
+    <?php
     include 'controller/'.$page.'.php';
+    include 'Includes/menu.inc.php';
 ?>
 </body>
 </html>

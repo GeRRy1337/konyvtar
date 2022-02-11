@@ -53,20 +53,19 @@
               echo '<button class="btn ';if($_SESSION['indexPage']+2==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']+2).'>'.($_SESSION['indexPage']+2).'</button>';
             }
           }
-
         ?>
         <button class="btn btn-primary my-2 my-sm-0" type="submit" name="forward">></button>
       </form>
-    <?php
-      }
-    ?>
     <form action="index.php?page=index" method="post" class="form-inline my-2 my-lg-0" name="searchForm">
       <input class="form-control mr-sm-2" type="search" name="search" placeholder="Keresés" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Keresés</button>
     </form>
     <?php
-      
+      }
     }
     ?>
   </div>
 </nav>
+<?php 
+  $conn->close();
+?>
