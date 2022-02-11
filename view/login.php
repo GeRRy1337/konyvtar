@@ -23,9 +23,7 @@
         </form>
         <?php
     }else{
-        if(!empty($_SESSION["id"])) {
-            header("index.php?page=userControl&action=logout");
-        }else {
+        if(empty($_SESSION["id"])){
             if(isset($_POST['user']) and isset($_POST['pw'])){
                 echo $loginError;
             }

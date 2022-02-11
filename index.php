@@ -25,7 +25,7 @@
 
     if(!empty($_SESSION["id"])) {
         $szoveg = $_SESSION["username"].": Kilépés";
-        $action = "kilepes";
+        $action = "logout";
     }
     else {
             $szoveg = "Belépés";
