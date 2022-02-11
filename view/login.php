@@ -24,13 +24,8 @@
         <?php
     }else{
         if(!empty($_SESSION["id"])) {
-            ?>
-            <form action="index.php?page=index" method="get">
-                <input type="submit" name="action" value="Kilépés">
-            </form>
-            <?php
-        }
-        else {
+            header("index.php?page=userControl&action=logout");
+        }else {
             if(isset($_POST['user']) and isset($_POST['pw'])){
                 echo $loginError;
             }
