@@ -63,9 +63,12 @@
     include 'Includes/header.inc.php';
     ?>
 <body>
-    <?php
-    include 'controller/'.$page.'.php';
-    include 'Includes/menu.inc.php';
+<?php
+        include 'Includes/menu.inc.php';
+        include 'controller/'.$page.'.php';
 ?>
 </body>
 </html>
+<?php 
+  $conn->close();
+?>
