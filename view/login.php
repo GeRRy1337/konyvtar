@@ -44,15 +44,13 @@
 ?>
 </div>
 <script>
-    function checkPass(){
+    document.getElementById('pw2').oninput=document.getElementById('pw').oninput=function (){
         if( document.getElementById('pw').value != document.getElementById('pw2').value ){
             document.getElementById('error').innerHTML="A jelszók nem egyeznek!";
         }else{
             document.getElementById('error').innerHTML="";
         }
-    }
-    document.getElementById('pw2').oninput=checkPass();
-    document.getElementById('pw').oninput=checkPass();
+    };
     document.getElementById('regEmail').oninput=function(){
         if( document.getElementById('regEmail').value.includes("@") ){
             if(document.getElementById('regEmail').value.split("@")[1].split(".")[0].length>0){
