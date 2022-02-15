@@ -41,17 +41,21 @@
         <button class="btn btn-primary my-2 my-sm-0" type="submit" name="backward"><</button>
         <?php
           for($i=0;$i<5;$i++){
-            if($_SESSION['indexPage']-5<$BookVar->getMax($conn) and $_SESSION['indexPage']-3>0){
-              echo '<button class="btn ';if($_SESSION['indexPage']-4+$i==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-4+$i).'>'.($_SESSION['indexPage']-4+$i).'</button>';
-            }elseif($_SESSION['indexPage']-4<$BookVar->getMax($conn) and $_SESSION['indexPage']-3>0){
-              echo '<button class="btn ';if($_SESSION['indexPage']-3+$i==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-3+$i).'>'.($_SESSION['indexPage']-3+$i).'</button>';
-            }elseif($_SESSION['indexPage']-2>0 and $_SESSION['indexPage']-1>0){
-              echo '<button class="btn ';if($_SESSION['indexPage']-2+$i==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-2+$i).'>'.($_SESSION['indexPage']-2+$i).'</button>';
-            }elseif($_SESSION['indexPage']-1>0 and $_SESSION['indexPage']>0){
-              echo '<button class="btn ';if($_SESSION['indexPage']-1+$i==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-1+$i).'>'.($_SESSION['indexPage']-1+$i).'</button>';
-            }elseif($_SESSION['indexPage']>0){
-              echo '<button class="btn ';if($_SESSION['indexPage']+$i==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']+$i).'>'.($_SESSION['indexPage']+$i).'</button>';
-            }
+              if($_SESSION['indexPage']==$BookVar->getMax($conn)-1){
+                if($_SESSION['indexPage']-3+$i>0){
+                  echo '<button class="btn ';if($_SESSION['indexPage']+$i==$_SESSION['indexPage']+3) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-3+$i).'>'.($_SESSION['indexPage']-3+$i).'</button>';
+                }
+              }elseif($_SESSION['indexPage']==$BookVar->getMax($conn)){
+                if($_SESSION['indexPage']-4+$i>0){
+                  echo '<button class="btn ';if($_SESSION['indexPage']+$i==$_SESSION['indexPage']+4) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-4+$i).'>'.($_SESSION['indexPage']-4+$i).'</button>';
+                }
+              }elseif($_SESSION['indexPage']-2>0){
+                echo '<button class="btn ';if($_SESSION['indexPage']-2+$i==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-2+$i).'>'.($_SESSION['indexPage']-2+$i).'</button>';
+              }elseif($_SESSION['indexPage']-1>0){
+                echo '<button class="btn ';if($_SESSION['indexPage']-1+$i==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-1+$i).'>'.($_SESSION['indexPage']-1+$i).'</button>';
+              }elseif($_SESSION['indexPage']>0){
+                echo '<button class="btn ';if($_SESSION['indexPage']+$i==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']+$i).'>'.($_SESSION['indexPage']+$i).'</button>';
+              }
           }
         ?>
         <button class="btn btn-primary my-2 my-sm-0" type="submit" name="forward">></button>
