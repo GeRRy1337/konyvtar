@@ -14,12 +14,17 @@ body{
     border: 2px solid black;
     text-align: center;
     margin-bottom: 3em;
-    width: 15rem;
+    width: 16rem;
 }
 
 .bookItem img{
     height: 20rem;
     max-width: 15rem;
+}
+
+.menubg{
+	background: url("menuBG.jpg");
+	 background-size: cover;
 }
 
 @media screen and (max-height: 700px) {

@@ -3,7 +3,6 @@
         if(!isset($_SESSION['indexPage'])){
             $_SESSION['indexPage']=1;
         }
-        echo $BookVar->getMax($conn);
         if ($bookIds) {
             foreach($bookIds as $bookId) {
                 $BookVar->set_book($bookId,$conn);
