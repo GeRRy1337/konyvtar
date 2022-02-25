@@ -23,8 +23,12 @@ body{
 }
 
 .menubg{
-	background: url("menuBG.jpg");
-	 background-size: cover;
+    background-image: url("../images/menuTexture.jpg");
+    background-position: center;
+}
+
+.color-dark{
+    color: rgba(0, 0, 0, 1) !important;
 }
 
 @media screen and (max-height: 700px) {

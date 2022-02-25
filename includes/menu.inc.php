@@ -12,20 +12,21 @@
           if($key=='index'){
             ?>
               <li class="nav-item<?php echo $active; ?>">
-                  <a class="nav-link" href="index.php?page=<?php echo $key; ?>&search=false"><?php echo $value; ?></a>
+                
+                <a class="nav-link color-dark" href="index.php?page=<?php echo $key; ?>&search=false"><span class="bi bi-house-fill"></span><?php echo $value; ?></a>
               </li>
             <?php
           }elseif($key!='userProfile' and $key!='favorites'){ 
       ?>
             <li class="nav-item<?php echo $active; ?>">
-                <a class="nav-link" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
+                <a class="nav-link color-dark" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
             </li>
       <?php
           }else{
             if(!empty($_SESSION['id'])){
               ?>
               <li class="nav-item<?php echo $active; ?>">
-                  <a class="nav-link" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
+                  <a class="nav-link color-dark" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
               </li>
               <?php
             }
@@ -70,3 +71,4 @@
     ?>
   </div>
 </nav>
+

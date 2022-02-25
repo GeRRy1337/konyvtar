@@ -13,7 +13,7 @@
             <br>
             Jelszó: <br><input type="password" name="pw2" id="pw2" required>
             <br>
-            Email:<br><input type="text" id="regEmail" name="email" required>
+            Email:<br><input type="email" id="regEmail" name="email" required>
             <br>
             <p id="error"></p>
             <a href="index.php?page=userControl">Bejelentkezés</a>
@@ -30,9 +30,9 @@
 
             ?>
             <form action="index.php?page=userControl" method="post">
-                Felhasználónév:<br><input type="text" name="user">
+                <span class="bi bi-person-fill"></span>Felhasználónév:<br><input type="text" name="user">
                 <br>
-                Jelszó: <br><input type="password" name="pw">
+                <span class="bi bi-key-fill">Jelszó:</span><br><input type="password" name="pw">
                 <br>
                 <a href="index.php?page=userControl&register=true">Nincs felhasználód? Regisztrálj!</a>
                 <br>
