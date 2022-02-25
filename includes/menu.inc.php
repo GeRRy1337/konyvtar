@@ -12,8 +12,7 @@
           if($key=='index'){
             ?>
               <li class="nav-item<?php echo $active; ?>">
-                
-                <a class="nav-link color-dark" href="index.php?page=<?php echo $key; ?>&search=false"><span class="bi bi-house-fill"></span><?php echo $value; ?></a>
+                <a class="nav-link color-dark" href="index.php?page=<?php echo $key; ?>&search=false"><?php echo $value; ?></a>
               </li>
             <?php
           }elseif($key!='userProfile' and $key!='favorites'){ 
@@ -34,36 +33,36 @@
         }
       ?>
     </ul>
-    <?php 
+    <?php
     if(isset($_REQUEST['page'])) {
       if($_REQUEST['page']=='index'){
     ?>
-      <form action="index.php?page=index" method="post" class="form-inline my-2 my-lg-0">
+      <form method="post" class="form-inline my-2 my-lg-0">
         <button class="btn btn-primary my-2 my-sm-0" type="submit" name="backward"><</button>
         <?php
           for($i=0;$i<5;$i++){
               if($_SESSION['indexPage']==$BookVar->getMax($conn)-1){
                 if($_SESSION['indexPage']-3+$i>0){
-                  echo '<button class="btn ';if($_SESSION['indexPage']+$i==$_SESSION['indexPage']+3) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-3+$i).'>'.($_SESSION['indexPage']-3+$i).'</button>';
+                  echo '<button class="btn '.($_SESSION['indexPage']+$i==$_SESSION['indexPage']+3?'btn-success':'btn-info').' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-3+$i).'>'.($_SESSION['indexPage']-3+$i).'</button>';
                 }
               }elseif($_SESSION['indexPage']==$BookVar->getMax($conn)){
                 if($_SESSION['indexPage']-4+$i>0){
-                  echo '<button class="btn ';if($_SESSION['indexPage']+$i==$_SESSION['indexPage']+4) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-4+$i).'>'.($_SESSION['indexPage']-4+$i).'</button>';
+                  echo '<button class="btn '.($_SESSION['indexPage']+$i==$_SESSION['indexPage']+4?'btn-success':'btn-info').' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-4+$i).'>'.($_SESSION['indexPage']-4+$i).'</button>';
                 }
               }elseif($_SESSION['indexPage']-2>0){
-                echo '<button class="btn ';if($_SESSION['indexPage']-2+$i==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-2+$i).'>'.($_SESSION['indexPage']-2+$i).'</button>';
+                echo '<button class="btn '.($_SESSION['indexPage']-2+$i==$_SESSION['indexPage']?'btn-success':'btn-info').' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-2+$i).'>'.($_SESSION['indexPage']-2+$i).'</button>';
               }elseif($_SESSION['indexPage']-1>0){
-                echo '<button class="btn ';if($_SESSION['indexPage']-1+$i==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-1+$i).'>'.($_SESSION['indexPage']-1+$i).'</button>';
+                echo '<button class="btn '.($_SESSION['indexPage']-1+$i==$_SESSION['indexPage']?'btn-success':'btn-info').' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-1+$i).'>'.($_SESSION['indexPage']-1+$i).'</button>';
               }elseif($_SESSION['indexPage']>0){
-                echo '<button class="btn ';if($_SESSION['indexPage']+$i==$_SESSION['indexPage']) echo 'btn-success'; else echo 'btn-info'; echo ' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']+$i).'>'.($_SESSION['indexPage']+$i).'</button>';
+                echo '<button class="btn '.($_SESSION['indexPage']+$i==$_SESSION['indexPage']?'btn-success':'btn-info').' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']+$i).'>'.($_SESSION['indexPage']+$i).'</button>';
               }
           }
         ?>
         <button class="btn btn-primary my-2 my-sm-0" type="submit" name="forward">></button>
       </form>
-    <form action="" method="post" class="form-inline my-2 my-lg-0" name="searchForm">
+    <form method="post" class="form-inline my-2 my-lg-0" name="searchForm">
       <input class="form-control mr-sm-2" type="search" name="search" placeholder="Keresés" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Keresés</button>
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit"><span class="bi bi-search"></span> Keresés</button>
     </form>
     <?php
       }

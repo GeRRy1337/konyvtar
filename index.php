@@ -24,11 +24,11 @@
     }
 
     if(!empty($_SESSION["id"])) {
-        $szoveg = $_SESSION["username"].": Kilépés";
+        $szoveg = "<span class='bi bi-box-arrow-left'></span> Kilépés: ".$_SESSION["username"];
         $action = "logout";
     }
     else {
-            $szoveg = "Belépés";
+            $szoveg = "<span class='bi bi-box-arrow-right'></span> Belépés";
             $action = "belepes";        
     } 
 
@@ -51,9 +51,10 @@
     }elseif(!isset($_REQUEST['register']) and isset( $_SESSION['register']) and $_SESSION['register']==true) {
         $_SESSION['register']=false;
     }
-    $menu = array('index' => "Főoldal",
-                  'favorites' => "Kedvencek",     
-                  'userProfile' => "Felhasználói profil",
+    
+    $menu = array('index' => "<span class='bi bi-house-fill'></span> Főoldal",
+                  'favorites' => "<span class='bi bi-star-fill'></span> Kedvencek",
+                  'userProfile' => "<span class='bi bi-person-badge'></span> Felhasználói profil",
                   'userControl' => $szoveg,
                 );
     if(in_array($page,$menu)){
