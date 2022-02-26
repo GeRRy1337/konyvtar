@@ -3,6 +3,19 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
+    <span class="lang mr-2"><span class="bi bi-translate"></span><?php echo $langArr['lang'];?>:
+        <select class="mr-2" name="langSelect" id="langSelect" onchange='{
+            const d = new Date();
+            d.setTime(d.getTime() + (30*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = "lang" + "=" + this.value + ";" + expires + ";path=../";
+            location.reload();
+            }
+        '>
+            <option value="hu" <?php if($_COOKIE['lang']=="hu")echo"selected";?>>HU</option>
+            <option value="en" <?php if($_COOKIE['lang']=="en")echo"selected";?>>EN</option>
+      </select></span>
+    
     <ul class="navbar-nav nav-pills mr-auto">
       <?php
         foreach($menu as $key => $value) {
@@ -59,10 +72,26 @@
           }
         ?>
         <button class="btn btn-primary my-2 my-sm-0" type="submit" name="forward">></button>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle color-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo $langArr['categories'];?>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <?php 
+                if($result=$conn->query("Select category_name from categories"))
+                  if($result->num_rows>0)
+                    while($row=$result->fetch_assoc()){
+                      echo '<li><a class="dropdown-item">'.$row['category_name'].'</a></li>';
+                    }
+              ?>
+            </ul>
+          </li>
+        </ul>
       </form>
     <form method="post" class="form-inline my-2 my-lg-0" name="searchForm">
-      <input class="form-control mr-sm-2" type="search" name="search" placeholder="Keresés" aria-label="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit"><span class="bi bi-search"></span> Keresés</button>
+      <input class="form-control mr-sm-2" type="search" name="search" placeholder="<?php echo $langArr['search'];?>" aria-label="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit"><span class="bi bi-search"></span> <?php echo $langArr['search'];?></button>
     </form>
     <?php
       }

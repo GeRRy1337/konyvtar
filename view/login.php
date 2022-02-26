@@ -4,21 +4,21 @@
         if(isset($_POST['user']) and isset($_POST['pw'])){
             echo $loginError;
         }
-        else echo "<h2>Regisztrácio</h2>";
+        else echo "<h2>".$langArr['register']."</h2>";
         ?>
         <form action="index.php?page=userControl&register=true" id="regForm" method="post">
-            Felhasználónév:<br><input type="text" name="user" required>
+            <?php echo $langArr['username'];?>:<br><input type="text" name="user" required>
             <br>
-            Jelszó: <br><input type="password" name="pw" id="pw" required>
+            <?php echo $langArr['password'];?>: <br><input type="password" name="pw" id="pw" required>
             <br>
-            Jelszó: <br><input type="password" name="pw2" id="pw2" required>
+            <?php echo $langArr['password'];?>: <br><input type="password" name="pw2" id="pw2" required>
             <br>
-            Email:<br><input type="email" id="regEmail" name="email" required>
+            <?php echo $langArr['email'];?>:<br><input type="email" id="regEmail" name="email" required>
             <br>
             <p id="error"></p>
-            <a href="index.php?page=userControl">Bejelentkezés</a>
+            <a href="index.php?page=userControl"><?php echo $langArr['loginText'];?></a>
             <br>
-        <input type="submit" >
+        <input type="submit" value="<?php echo $langArr['send'];?>">
         </form>
         <?php
     }else{
@@ -26,17 +26,17 @@
             if(isset($_POST['user']) and isset($_POST['pw'])){
                 echo $loginError;
             }
-            else echo "<h2>Belépés</h2>";
+            else echo "<h2>".$langArr['login']."</h2>";
 
             ?>
             <form action="index.php?page=userControl" method="post">
-                <span class="bi bi-person-fill"></span>Felhasználónév:<br><input type="text" name="user">
+                <span class="bi bi-person-fill"></span><?php echo $langArr['username'];?>:<br><input type="text" name="user">
                 <br>
-                <span class="bi bi-key-fill">Jelszó:</span><br><input type="password" name="pw">
+                <span class="bi bi-key-fill"><?php echo $langArr['password'];?>:</span><br><input type="password" name="pw">
                 <br>
-                <a href="index.php?page=userControl&register=true">Nincs felhasználód? Regisztrálj!</a>
+                <a href="index.php?page=userControl&register=true"><?php echo $langArr['regText'];?></a>
                 <br>
-            <input type="submit">
+            <input type="submit" value="<?php echo $langArr['send'];?>">
             </form>
             <?php						
         }
@@ -46,47 +46,13 @@
 <script>
     document.getElementById('pw2').oninput=document.getElementById('pw').oninput=function (){
         if( document.getElementById('pw').value != document.getElementById('pw2').value ){
-            document.getElementById('error').innerHTML="A jelszók nem egyeznek!";
+            document.getElementById('error').innerHTML="<?php echo $langArr['passwordMatch'];?>";
         }else{
             document.getElementById('error').innerHTML="";
         }
     };
-    document.getElementById('regEmail').oninput=function(){
-        if( document.getElementById('regEmail').value.includes("@") ){
-            if(document.getElementById('regEmail').value.split("@")[1].split(".")[0].length>0){
-                if(document.getElementById('regEmail').value.split("@")[1].includes(".")){
-                    if(document.getElementById('regEmail').value.split("@")[1].split(".")[1].length>0){
-                        document.getElementById('error').innerHTML="";
-                    }else{
-                        document.getElementById('error').innerHTML="Hibás email!";
-                    }
-                }else{
-                    document.getElementById('error').innerHTML="Hibás email!";
-                }
-            }else{
-                document.getElementById('error').innerHTML="Hibás email!";
-            }
-        }else{
-            document.getElementById('error').innerHTML="Hibás email!";
-        }
-    }
     document.getElementById('regForm').onsubmit = function() {
         if( document.getElementById('pw').value != document.getElementById('pw2').value ){
-            return false;
-        }
-        if( document.getElementById('regEmail').value.includes("@") ){
-            if(document.getElementById('regEmail').value.split("@")[1].split(".")[0].length>0){
-                if(document.getElementById('regEmail').value.split("@")[1].includes(".")){
-                    if(document.getElementById('regEmail').value.split("@")[1].split(".")[1].length<1){
-                        return false;
-                    }
-                }else{
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        }else{
             return false;
         }
 

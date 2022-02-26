@@ -34,6 +34,18 @@ body{
     font-weight: 400 !important;
 }
 
+.lang{
+    background: burlywood;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.lang select{
+    border-radius: 5px;
+    background-color: inherit;
+    border: 0;
+}
+
 @media screen and (max-height: 700px) {
     .bookItem img{
         height: 10rem;

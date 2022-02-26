@@ -17,6 +17,20 @@
 
     $adminList = $admin->lista($conn);
 
+    $langArr=array();
+    if(!isset($_COOKIE['lang'])){
+        setcookie( 'lang', "hu", time() + 60*60*24*30 );
+    }
+
+    if($_COOKIE['lang']=="hu"){
+        $file=file_get_contents("localization/hu.json");
+        $langArr=json_decode($file,true);
+    }else{
+        $file=file_get_contents("localization/en.json");
+        $langArr=json_decode($file,true);
+    }
+    
+
     $page = 'index';
 
     if(!empty($_REQUEST['action'])) {
@@ -24,11 +38,11 @@
     }
 
     if(!empty($_SESSION["id"])) {
-        $szoveg = "<span class='bi bi-box-arrow-left'></span> Kilépés: ".$_SESSION["username"];
+        $szoveg = "<span class='bi bi-box-arrow-left'></span> ".$langArr['logout'].": ".$_SESSION["username"];
         $action = "logout";
     }
     else {
-            $szoveg = "<span class='bi bi-box-arrow-right'></span> Belépés";
+            $szoveg = "<span class='bi bi-box-arrow-right'></span> ".$langArr['login'];
             $action = "belepes";        
     } 
 
@@ -52,9 +66,9 @@
         $_SESSION['register']=false;
     }
     
-    $menu = array('index' => "<span class='bi bi-house-fill'></span> Főoldal",
-                  'favorites' => "<span class='bi bi-star-fill'></span> Kedvencek",
-                  'userProfile' => "<span class='bi bi-person-badge'></span> Felhasználói profil",
+    $menu = array('index' => "<span class='bi bi-house-fill'></span> ".$langArr['home'],
+                  'favorites' => "<span class='bi bi-star-fill'></span> ".$langArr['favorite'],
+                  'userProfile' => "<span class='bi bi-person-badge'></span> ".$langArr['profile'],
                   'userControl' => $szoveg,
                 );
     if(in_array($page,$menu)){
