@@ -2,10 +2,10 @@
 if(isset($_POST['user']) and isset($_POST['pw'])) {
 	$loginError = '';
 	if(isset($_POST['pw2']) and isset($_POST['email'])){
-		if($_POST['pw2']!=$_POST['pw']) $loginError.="A jelszók nem egyeznek!<br>";
+		if($_POST['pw2']!=$_POST['pw']) $loginError.=$langArr["passwordMatch"]."<br>";
 		$email=$_POST['email'];
 		if(!strpos($email,"@") or !strpos($email,".") or strlen(explode(".",explode("@",$email)[1])[0])<1 or strlen(explode(".",explode("@",$email)[1])[1])<1){
-			$loginError .= "Hibás email!<br>";
+			$loginError .= $langArr["emailError"]."<br>";
 		}
 		if($loginError == '') {
 			$sql = "SELECT id FROM users WHERE username = ? ";
@@ -16,7 +16,7 @@ if(isset($_POST['user']) and isset($_POST['pw'])) {
 				if(!$result = $stmt->get_result()) echo "SQL Error";
 				
 				if ($result->num_rows > 0) {
-					$loginError .= "Ez a felhasználónév már foglalt<br>";
+					$loginError .= $langArr['userInUse']."<br>";
 				}else{
 					$sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
 			
@@ -36,8 +36,8 @@ if(isset($_POST['user']) and isset($_POST['pw'])) {
 			}
 		}
 	}else{
-		if(strlen($_POST['user']) == 0) $loginError .= "Nem írtál be felhasználónevet<br>";
-		if(strlen($_POST['pw']) == 0) $loginError .= "Nem írtál be jelszót<br>";
+		if(strlen($_POST['user']) == 0) $loginError .= $langArr['emptyUser']."<br>";
+		if(strlen($_POST['pw']) == 0) $loginError .= $langArr['emptyPass']."<br>";
 		if($loginError == '') {
 			$sql = "SELECT id FROM users WHERE username = '".$_POST['user']."' ";
 			if(!$result = $conn->query($sql)) echo $conn->error;
@@ -52,10 +52,10 @@ if(isset($_POST['user']) and isset($_POST['pw'])) {
 						header('Location: index.php?page=index');
 						exit();
 					}
-					else $loginError .= 'Érvénytelen jelszó<br>';
+					else $loginError .= $langArr['passError'].'<br>';
 				}
 			}
-			else $loginError .= 'Érvénytelen felhasználónév<br>';
+			else $loginError .= $langArr['userError'].'<br>';
 		}
 	}
 }

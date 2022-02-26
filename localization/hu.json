@@ -22,5 +22,12 @@
     "regText":"Nincs felhasználód? Regisztrálj!",
     "send":"Küldés",
     "passwordMatch":"A jelszók nem egyeznek!",
+    "weakPassword":"Gyakran használt jelszó. Kérjük használjon erősebb jelszót!",
+    "emailError":"Hibás email!",
+    "userInUse":"Ez a felhasználónév már foglalt",
+    "emptyUser":"Nem írtál be felhasználónevet",
+    "emptyPass":"Nem írtál be jelszót",
+    "passError":"Érvénytelen jelszó",
+    "userError":"Érvénytelen felhasználónév",
     "lang":"Nyelv"
 }

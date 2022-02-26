@@ -47,6 +47,8 @@
     document.getElementById('pw2').oninput=document.getElementById('pw').oninput=function (){
         if( document.getElementById('pw').value != document.getElementById('pw2').value ){
             document.getElementById('error').innerHTML="<?php echo $langArr['passwordMatch'];?>";
+        }else if(document.getElementById('pw').value.includes("asd") || document.getElementById('pw2').value.includes("asd")){
+            document.getElementById('error').innerHTML="<?php echo $langArr['weakPassword'];?>";
         }else{
             document.getElementById('error').innerHTML="";
         }
