@@ -3,29 +3,29 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav nav-pills mr-auto">
       <?php
         foreach($menu as $key => $value) {
           $active = '';
-          if($_SERVER['REQUEST_URI'] == '/konyvtar/'.$key) $active = ' active';
+          if(isset($_REQUEST['page']) and $_REQUEST['page'] == $key) $active = ' active';
           if($key == 'userControl') $key.='&action='.$action;
           if($key=='index'){
             ?>
-              <li class="nav-item<?php echo $active; ?>">
-                <a class="nav-link color-dark" href="index.php?page=<?php echo $key; ?>&search=false"><?php echo $value; ?></a>
+              <li class="nav-item">
+                <a class="nav-link color-dark <?php echo $active; ?>" href="index.php?page=<?php echo $key; ?>&search=false"><?php echo $value; ?></a>
               </li>
             <?php
           }elseif($key!='userProfile' and $key!='favorites'){ 
       ?>
-            <li class="nav-item<?php echo $active; ?>">
-                <a class="nav-link color-dark" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
+            <li class="nav-item">
+                <a class="nav-link color-dark <?php echo $active; ?>" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
             </li>
       <?php
           }else{
             if(!empty($_SESSION['id'])){
               ?>
-              <li class="nav-item<?php echo $active; ?>">
-                  <a class="nav-link color-dark" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
+              <li class="nav-item">
+                  <a class="nav-link color-dark <?php echo $active; ?>" href="index.php?page=<?php echo $key; ?>"><?php echo $value; ?></a>
               </li>
               <?php
             }
