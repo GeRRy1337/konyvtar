@@ -1,6 +1,6 @@
 <?php 
     $browser = $_SERVER['HTTP_USER_AGENT'];
-    if (strpos($browser,"Java")==false) header('location:/gergo/szakdolgozat/index.php?page=index&search=false');
+    if (strpos($browser,"Java")==false) header('location:../index.php?page=index&search=false');
     if(isset($_REQUEST['key']) and $_REQUEST['key']=="313303ef7840acb49ba489ddb9247be4969e8a650f28eda39756556868d9c1ea"){
         require (realpath($_SERVER["DOCUMENT_ROOT"]).'/gergo/szakdolgozat/Includes/db.inc.php');
         if($_REQUEST['action']=="Select"){
