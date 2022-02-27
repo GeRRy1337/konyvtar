@@ -53,7 +53,7 @@
 
         public function writtenBooks($conn,$id) {
             $list = array();
-            $sql = "SELECT id FROM books where id=".$id;
+            $sql = "SELECT id FROM books where AuthorId=".$id;
             if($result = $conn->query($sql)) {
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {

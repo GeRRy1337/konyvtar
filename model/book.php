@@ -6,6 +6,7 @@
         private $ISBN;
         private $BookTitle;
         private $BookAuthor;
+        private $AuthorId;
         private $YearOfPublication;
         private $publisher;
         private $ImageUrlL;
@@ -21,6 +22,7 @@
                     $this->ISBN = $row['ISBN'];
                     $this->BookTitle = $row['BookTitle'];
                     $this->BookAuthor = $conn->query("SELECT name FROM author where id=".$row['AuthorId'])->fetch_assoc()['name'];
+                    $this->AuthorId = $row['AuthorId'];
                     $this->YearOfPublication = $row['YearOfPublication'];
                     $this->publisher = $row['Publisher'];
                     $this->ImageUrlL = $row['ImageUrlL'];
@@ -45,6 +47,10 @@
 
         public function get_BookAuthor() {
             return $this->BookAuthor;
+        }
+
+        public function get_AuthorId() {
+            return $this->AuthorId;
         }
 
         public function get_YearOfPublication() {

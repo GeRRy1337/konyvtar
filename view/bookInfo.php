@@ -4,7 +4,7 @@
             <img id="infoImg" src="<?php echo $BookVar->get_ImageUrlL();?>">
             <h1><?php echo $BookVar->get_BookTitle();?></h1>
             <hr>
-            <p><?php echo $langArr['wrote'].': '.$BookVar->get_BookAuthor()?></p>
+            <p><a href="?page=authorInfo&authorId=<?php echo $BookVar->get_AuthorId()?>"><?php echo $langArr['wrote'].': '.$BookVar->get_BookAuthor()?></a></p>
             <?php  
                 if (isset($_SESSION['id'])){
             ?>
