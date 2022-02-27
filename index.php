@@ -52,7 +52,24 @@
                 $page = $_REQUEST['page'];
         }
     }else{
-        header("location: index.php?page=index&search=false");
+        if(isset($_REQUEST['category'])){
+            if(isset($_SESSION["categories"])){
+                $_SESSION["categories"][]=$_REQUEST['category'];
+            }else{
+                $_SESSION["categories"]=array();
+                $_SESSION["categories"][]=$_REQUEST['category'];
+            }
+            header("location: index.php?page=index");
+        }elseif(isset($_REQUEST['removeCat'])){
+            if(isset($_SESSION["categories"])){
+              foreach($_SESSION["categories"] as $index => $category)
+                  if ($_SESSION["categories"][$index]==$_REQUEST['removeCat'])
+                    unset($_SESSION["categories"][$index]);
+            }
+            header("location: index.php?page=index");
+        }else{
+            header("location: index.php?page=index&search=false");
+        }
     }
 
     if(isset($_REQUEST['search'])) {

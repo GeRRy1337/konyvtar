@@ -79,10 +79,10 @@
             </a>
             <ul class="dropdown-menu menu-scroll" aria-labelledby="navbarDropdown">
               <?php 
-                if($result=$conn->query("Select category_name from categories"))
+                if($result=$conn->query("Select category_name,category_id from categories"))
                   if($result->num_rows>0)
                     while($row=$result->fetch_assoc()){
-                      echo '<li><a class="dropdown-item">'.$row['category_name'].'</a></li>';
+                      echo '<li><a href="'.$_SERVER['PHP_SELF']."?".'category='.$row['category_id'].'" class="dropdown-item">'.$row['category_name'].'</a></li>';
                     }
               ?>
             </ul>

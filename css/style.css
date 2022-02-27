@@ -1,5 +1,6 @@
 body{
     padding-top: 60px;
+    background-color: wheat !important;
 }
 
 .bookTable{
@@ -7,7 +8,7 @@ body{
     flex-flow: row wrap;
     justify-content:space-around;
     gap:2%;
-    padding: 0 1%;
+    padding: 1% 1%;
     background-image: url("../images/wallpapper.jpg");
 }
 
@@ -21,6 +22,18 @@ body{
 .bookItem img{
     height: 20rem;
     max-width: 16rem;
+}
+
+.category{
+    background-color:gold;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 2px;
+}
+
+.categories{
+    margin: 15px;
 }
 
 .menubg{

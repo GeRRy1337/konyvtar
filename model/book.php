@@ -122,9 +122,18 @@
         public function bookList($conn) {
             if(!isset($_SESSION['indexPage'])) $_SESSION['indexPage']=1;
             if(!isset($_SESSION['search'])) $_SESSION['search']='';
+            $categories="";
+            if(isset($_SESSION['categories']) and count($_SESSION['categories'])>0){
+                $categories="and books.id in(select bookId from categoryconn where categoryId in (";
+                foreach($_SESSION['categories'] as $category){
+                    $categories.=intval($category).",";
+                }
+                $categories=substr($categories,0,strlen($categories)-1);
+                $categories.=" ) )";
+            }
             $search=$_SESSION['search'] or '';
             $list = array();
-            $sql = "SELECT books.id FROM books inner join author on AuthorId=author.id where BookTitle like('%".$search."%') or author.name like ('%".$search."%') limit ".(($_SESSION['indexPage']-1)*40).",40";
+            $sql = "SELECT books.id FROM books inner join author on AuthorId=author.id where (BookTitle like('%".$search."%') or author.name like ('%".$search."%'))".$categories." limit ".(($_SESSION['indexPage']-1)*40).",40";
             if($result = $conn->query($sql)) {
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
@@ -136,8 +145,17 @@
         }
         public function getMax($conn) {
             if(!isset($_SESSION['search'])) $_SESSION['search']='';
+            $categories="";
+            if(isset($_SESSION['categories']) and count($_SESSION['categories'])>0){
+                $categories="and books.id in(select bookId from categoryconn where categoryId in (";
+                foreach($_SESSION['categories'] as $category){
+                    $categories.=intval($category).",";
+                }
+                $categories=substr($categories,0,strlen($categories)-1);
+                $categories.=") )";
+            }
             $search=$_SESSION['search'] or '';
-            $sql = "SELECT count(books.id) as maxNum FROM books inner join author on AuthorId=author.id where BookTitle like('%".$search."%') or author.name like ('%".$search."%') ";
+            $sql = $sql = "SELECT count(books.id) as maxNum FROM books inner join author on AuthorId=author.id where (BookTitle like('%".$search."%') or author.name like ('%".$search."%')) ".$categories;
             if($result = $conn->query($sql)) {
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
