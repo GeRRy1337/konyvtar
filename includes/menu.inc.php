@@ -77,7 +77,7 @@
             <a class="nav-link dropdown-toggle color-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $langArr['categories'];?>
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu menu-scroll" aria-labelledby="navbarDropdown">
               <?php 
                 if($result=$conn->query("Select category_name from categories"))
                   if($result->num_rows>0)

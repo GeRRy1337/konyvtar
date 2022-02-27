@@ -29,6 +29,12 @@ body{
     font-size: 1.15rem;
 }
 
+.menu-scroll{
+    max-height: 8rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 .color-dark{
     color: rgba(0, 0, 0, 1) !important;
     font-weight: 400 !important;
