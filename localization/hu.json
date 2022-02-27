@@ -5,6 +5,7 @@
     "logout":"Kilépés",
     "search":"Keresés",
     "categories":"Kategóriák",
+    "noResult":"Nincs találat!",
     "borrow":"Kikölcsönzött könyvek",
     "bookTitle":"Cím",
     "bookNum":"Könyvtári szám",

@@ -5,6 +5,7 @@
     "logout":"Logout",
     "search":"Search",
     "categories":"Categories",
+    "noResult":"No book found!",
     "borrow":"Borrowed books",
     "bookTitle":"Title",
     "bookNum":"Library number",
