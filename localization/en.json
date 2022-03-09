@@ -29,9 +29,14 @@
     "weakPassword":"Frequently used password. Please use a stronger pasword!",
     "emailError":"Invalid email!",
     "userInUse":"This username is already in use!",
+    "emailInUse":"This email is already in use!",
     "emptyUser":"Please fill in username",
     "emptyPass":"Please fill in password",
     "passError":"Invalid password",
+    "emailConfirmError":"Please confirm your email.",
     "userError":"Invalid username",
+    "emailSubject":"Email confirmation",
+    "resendEmail":"Resend confirmation email.",
+    "emailConfrim":"<h1>Email confirmation</h1><p>Please click the link to confirm your email</p>",
     "lang":"Language"
 }

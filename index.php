@@ -82,7 +82,11 @@
     }elseif(!isset($_REQUEST['register']) and isset( $_SESSION['register']) and $_SESSION['register']==true) {
         $_SESSION['register']=false;
     }
-    
+    if(isset($_REQUEST['resendEmail']) and $_REQUEST['resendEmail']==true) {
+        $_SESSION['resendEmail']=true;
+    }elseif(!isset($_REQUEST['resendEmail']) and isset( $_SESSION['resendEmail']) and $_SESSION['resendEmail']==true) {
+        $_SESSION['resendEmail']=false;
+    }
     $menu = array('index' => "<span class='bi bi-house-fill'></span> ".$langArr['home'],
                   'favorites' => "<span class='bi bi-star-fill'></span> ".$langArr['favorite'],
                   'userProfile' => "<span class='bi bi-person-badge'></span> ".$langArr['profile'],

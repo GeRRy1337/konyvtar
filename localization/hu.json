@@ -29,9 +29,14 @@
     "weakPassword":"Gyakran használt jelszó. Kérjük használjon erősebb jelszót!",
     "emailError":"Hibás email!",
     "userInUse":"Ez a felhasználónév már foglalt",
+    "emailInUse":"Ez az email cím már foglalt",
     "emptyUser":"Nem írtál be felhasználónevet",
     "emptyPass":"Nem írtál be jelszót",
     "passError":"Érvénytelen jelszó",
+    "emailConfirmError":"Kérjük erősítse meg az email címét.",
     "userError":"Érvénytelen felhasználónév",
+    "emailSubject":"Email cím megerősítése",
+    "resendEmail":"Megerősítő email újrakűldése.",
+    "emailConfrim":"<h1>Email megerősítés</h1><p>Kérlek kattints a linkre az emailed megerősítéséhez</p>",
     "lang":"Nyelv"
 }

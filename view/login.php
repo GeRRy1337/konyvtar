@@ -21,6 +21,19 @@
         <input type="submit" value="<?php echo $langArr['send'];?>">
         </form>
         <?php
+    }elseif(isset( $_SESSION['resendEmail']) and $_SESSION['resendEmail']==true){
+        echo $loginError."<br>";
+        echo "<h2>Email</h2>";
+        ?>
+        <form action="index.php?page=userControl&resendEmail=true" id="resendForm" method="post">
+            <?php echo $langArr['email'];?>:<br><input type="email" id="regEmail" name="email" required>
+            <br>
+            <p id="error"></p>
+            <a href="index.php?page=userControl"><?php echo $langArr['loginText'];?></a>
+            <br>
+            <input type="submit" name="resendButton" value="<?php echo $langArr['send'];?>">
+        </form>
+        <?php
     }else{
         if(empty($_SESSION["id"])){
             if(isset($_POST['user']) and isset($_POST['pw'])){
@@ -34,7 +47,8 @@
                 <br>
                 <span class="bi bi-key-fill"><?php echo $langArr['password'];?>:</span><br><input type="password" name="pw">
                 <br>
-                <a href="index.php?page=userControl&register=true"><?php echo $langArr['regText'];?></a>
+                <a href="index.php?page=userControl&register=true"><?php echo $langArr['regText'];?></a><br>
+                <a href="index.php?page=userControl&resendEmail=true"><?php echo $langArr['resendEmail'];?></a>
                 <br>
             <input type="submit" value="<?php echo $langArr['send'];?>">
             </form>

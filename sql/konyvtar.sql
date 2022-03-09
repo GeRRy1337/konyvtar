@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Feb 11. 20:10
--- Kiszolgáló verziója: 10.4.14-MariaDB
--- PHP verzió: 7.4.11
+-- Gép: localhost
+-- Létrehozás ideje: 2022. Már 09. 18:49
+-- Kiszolgáló verziója: 10.3.29-MariaDB-0+deb10u1
+-- PHP verzió: 7.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `konyvtar`
+-- Adatbázis: `c31j202121`
 --
 
 -- --------------------------------------------------------
@@ -8166,7 +8166,9 @@ INSERT INTO `author` (`id`, `name`, `birthDate`) VALUES
 (8105, 'Lindsay McKenna', ''),
 (8106, 'Sheila Simonson', ''),
 (8107, 'Margaret St. George', ''),
-(8108, 'Lori', '0');
+(8108, 'test', ' '),
+(8109, '', '0'),
+(8110, 'asd', '0');
 
 -- --------------------------------------------------------
 
@@ -23672,8 +23674,10 @@ INSERT INTO `books` (`id`, `ISBN`, `BookTitle`, `AuthorId`, `YearOfPublication`,
 (15434, 0373241739, 'Stallion Tamer (Cowboys Of The Southwest) (Special Edition , No 1173)', 8105, '1998', 'Silhouette', 'http://images.amazon.com/images/P/0373241739.01.LZZZZZZZ.jpg'),
 (15435, 0037326240, 'Meadowlark (Worldwide Library Mysteries)', 8106, '1997', 'Worldwide Library', 'http://images.amazon.com/images/P/037326240X.01.LZZZZZZZ.jpg'),
 (15436, 0373825692, 'For The Love Of Beau (Delta Justice) (Delta Justice , No 9)', 8107, '1998', 'Harlequin', 'http://images.amazon.com/images/P/0373825692.01.LZZZZZZZ.jpg'),
-(15437, 0000002002, 'Lori könyve', 8108, '2022', 'Lori kft', 'images/covers/lorikonyve.png'),
-(15438, 0000000111, 'asd', 8101, '123', 'asd', 'blank');
+(15437, 0000001337, 'test', 8108, '2022', 'tes', 'blank'),
+(15438, 0000002022, 'asd', 8109, '1', 'asd', 'blank'),
+(15439, 0000001234, 'asd', 8110, '15', 'asd', 'blank'),
+(15440, 0000000012, 'asd', 8110, '2022', 'asd', 'blank');
 
 -- --------------------------------------------------------
 
@@ -23700,13 +23704,21 @@ INSERT INTO `borrow` (`id`, `cardNum`, `stockNum`, `date`, `returnDate`, `state`
 (5, 1, 4, '2022-02-16', '2022-01-16', 1),
 (7, 1, 6, '2022-01-26', '2022-01-16', 1),
 (8, 1, 7, '2022-01-27', '0000-00-00', 0),
-(9, 1, 8, '2022-02-17', '2022-02-07', 1),
-(10, 2, 1, '2022-01-28', '2022-02-07', 1),
-(11, 2, 2, '2022-02-28', '0001-01-01', 0),
-(12, 2, 1337, '2022-02-11', '0000-00-00', 1),
-(13, 2, 8, '2022-02-18', '0001-01-01', 0),
-(14, 2, 12, '2022-02-10', '0001-01-01', 0),
-(15, 2, 13, '2022-02-27', '0001-01-01', 0);
+(9, 1, 8, '2022-02-17', '0001-01-01', 0),
+(10, 1, 9, '2022-01-31', '2022-01-17', 1),
+(11, 1, 10, '2022-02-24', '0001-01-01', 0),
+(12, 1, 1, '2022-01-29', '2022-01-17', 1),
+(13, 1, 1234, '2022-01-27', '2022-01-17', 1),
+(15, 1, 1234, '2022-02-25', '0000-00-00', 1),
+(16, 1, 1234, '2022-02-25', '0000-00-00', 1),
+(17, 1, 1234, '2022-02-25', '0000-00-00', 1),
+(18, 1, 1234, '2022-02-25', '0000-00-00', 1),
+(19, 1, 1234, '2022-02-25', '0000-00-00', 1),
+(20, 1, 1234, '2022-02-25', '0000-00-00', 1),
+(21, 1, 1234, '2022-02-25', '0000-00-00', 1),
+(22, 1, 1234, '2022-02-25', '0000-00-00', 1),
+(23, 1, 1234, '2022-02-25', '0000-00-00', 1),
+(24, 1, 1234, '2022-02-17', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -23727,8 +23739,73 @@ CREATE TABLE `cards` (
 --
 
 INSERT INTO `cards` (`id`, `birth`, `addres`, `phoneNumber`, `name`) VALUES
-(1, '1970-01-01', 'test', 19700101, 'test'),
-(2, '1970-01-01', 'asd', 19700101, 'asd');
+(1, '1970-01-01', 'test', 19700101, 'test');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `categories`
+--
+
+CREATE TABLE `categories` (
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- A tábla adatainak kiíratása `categories`
+--
+
+INSERT INTO `categories` (`category_id`, `category_name`) VALUES
+(2, 'Scify'),
+(3, 'Fantasy'),
+(4, 'History'),
+(5, 'Drama'),
+(6, 'Detective'),
+(7, 'Action'),
+(8, 'Young Adult');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `categoryconn`
+--
+
+CREATE TABLE `categoryconn` (
+  `bookId` int(11) NOT NULL,
+  `categoryId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- A tábla adatainak kiíratása `categoryconn`
+--
+
+INSERT INTO `categoryconn` (`bookId`, `categoryId`) VALUES
+(854, 2),
+(855, 2),
+(856, 2),
+(932, 2),
+(1303, 2),
+(1444, 2),
+(2058, 2),
+(3647, 2),
+(3882, 2),
+(3883, 2),
+(3888, 2),
+(4781, 2),
+(5342, 2),
+(6106, 2),
+(7282, 2),
+(11215, 2),
+(11575, 2),
+(11593, 2),
+(11819, 2),
+(12663, 2),
+(12844, 2),
+(15270, 2),
+(15348, 2),
+(15349, 2),
+(15350, 2);
 
 -- --------------------------------------------------------
 
@@ -23746,23 +23823,29 @@ CREATE TABLE `favourite` (
 --
 
 INSERT INTO `favourite` (`bId`, `uId`) VALUES
-(1, 1),
 (1, 3),
-(2, 1),
 (2, 3),
-(2970, 1),
-(2970, 4),
-(2988, 1),
-(4687, 4),
-(6104, 3),
-(8911, 3),
-(10858, 1),
-(11575, 3),
-(12893, 3),
-(13310, 4),
-(13759, 4),
-(15270, 3),
-(15437, 3);
+(2, 15),
+(3, 15),
+(4, 15),
+(15, 13),
+(32, 24),
+(813, 4),
+(2970, 3),
+(2988, 3),
+(2988, 4),
+(3430, 4),
+(3430, 12),
+(3719, 11),
+(6254, 11),
+(6714, 4),
+(7419, 11),
+(9674, 11),
+(10039, 11),
+(12914, 12),
+(13759, 19),
+(14717, 4),
+(14717, 12);
 
 -- --------------------------------------------------------
 
@@ -23781,17 +23864,22 @@ CREATE TABLE `stock` (
 
 INSERT INTO `stock` (`bookId`, `stockNum`) VALUES
 (1, 3),
+(1, 9),
+(1, 10),
+(1, 1234),
 (2, 1),
 (2, 2),
 (2, 4),
 (2, 6),
-(2, 12),
-(2, 1337),
 (5, 5),
 (10, 7),
 (10, 8),
-(15437, 13),
-(15438, 14);
+(15437, 2022),
+(15439, 123),
+(15439, 2415),
+(15440, 24),
+(15440, 42),
+(15440, 54);
 
 -- --------------------------------------------------------
 
@@ -23809,7 +23897,6 @@ CREATE TABLE `usercards` (
 --
 
 INSERT INTO `usercards` (`userId`, `cardId`) VALUES
-(3, 2),
 (4, 1);
 
 -- --------------------------------------------------------
@@ -23822,23 +23909,11 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` text NOT NULL,
   `password` text NOT NULL,
-  `email` text NOT NULL
+  `email` text NOT NULL,
+  `email_confirm` tinyint(1) NOT NULL DEFAULT 0,
+  `email_key` text NOT NULL,
+  `reg_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- A tábla adatainak kiíratása `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `email`) VALUES
-(1, 'gerry', '7815696ecbf1c96e6894b779456d330e', ''),
-(3, 'admin', '21232f297a57a5a743894a0e4a801fc3', ''),
-(4, 'test', '098f6bcd4621d373cade4e832627b4f6', 'test'),
-(5, 'asd', '7815696ecbf1c96e6894b779456d330e', 'asd'),
-(6, 'user123', '202cb962ac59075b964b07152d234b70', '123@123.123'),
-(7, 'asdasd', 'a8f5f167f44f4964e6c998dee827110c', 'asdasd@asdasd.asd'),
-(8, '12345', '827ccb0eea8a706c4c34a16891f84e7b', '12345@12345.12345'),
-(9, 'teszt', '202cb962ac59075b964b07152d234b70', 'teszt@teszt.teszt'),
-(10, 'secure', '202cb962ac59075b964b07152d234b70', 'secure@secure.secure');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -23878,6 +23953,19 @@ ALTER TABLE `cards`
   ADD PRIMARY KEY (`id`);
 
 --
+-- A tábla indexei `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- A tábla indexei `categoryconn`
+--
+ALTER TABLE `categoryconn`
+  ADD KEY `bookId` (`bookId`),
+  ADD KEY `categoryId` (`categoryId`);
+
+--
 -- A tábla indexei `favourite`
 --
 ALTER TABLE `favourite`
@@ -23915,37 +24003,43 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `author`
 --
 ALTER TABLE `author`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8109;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8111;
 
 --
 -- AUTO_INCREMENT a táblához `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15439;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15441;
 
 --
 -- AUTO_INCREMENT a táblához `borrow`
 --
 ALTER TABLE `borrow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT a táblához `cards`
 --
 ALTER TABLE `cards`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT a táblához `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `stockNum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1338;
+  MODIFY `stockNum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2416;
 
 --
 -- AUTO_INCREMENT a táblához `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Megkötések a kiírt táblákhoz
@@ -23969,6 +24063,13 @@ ALTER TABLE `books`
 ALTER TABLE `borrow`
   ADD CONSTRAINT `borrow.cardNum` FOREIGN KEY (`cardNum`) REFERENCES `cards` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `borrow_ibfk_1` FOREIGN KEY (`stockNum`) REFERENCES `stock` (`stockNum`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Megkötések a táblához `categoryconn`
+--
+ALTER TABLE `categoryconn`
+  ADD CONSTRAINT `categoryconn_ibfk_1` FOREIGN KEY (`bookId`) REFERENCES `books` (`id`),
+  ADD CONSTRAINT `categoryconn_ibfk_2` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`category_id`);
 
 --
 -- Megkötések a táblához `favourite`
