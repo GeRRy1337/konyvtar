@@ -65,6 +65,17 @@ body{
     border: 0;
 }
 
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+.bookContainer{
+    width:100%;
+    text-align: center;
+}
+
 @media screen and (max-height: 700px) {
     .bookItem img{
         height: 10rem;
@@ -73,11 +84,6 @@ body{
     .bookItem{
         width: 10rem;
     }
-}
-
-.bookContainer{
-    width:100%;
-    text-align: center;
 }
 
 #infoImg{
@@ -110,4 +116,16 @@ body{
     background-size: contain;
     width: 2em;
     border: none;
+}
+
+.sidebar-item{
+    background-color: lightgray;
+    border:2px solid lightgray;
+    border-bottom: 2px solid black;
+    border-radius: 10px;
+    margin-bottom: 0.5em;
+}
+
+.sidebar{
+    background-color:antiquewhite;
 }
