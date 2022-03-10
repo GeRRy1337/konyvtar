@@ -100,8 +100,8 @@
     ?>
 <body>
 <?php
-        include 'Includes/menu.inc.php';
         include 'controller/'.$page.'.php';
+		include 'Includes/menu.inc.php';
 ?>
 </body>
 </html>
