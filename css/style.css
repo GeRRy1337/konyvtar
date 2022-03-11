@@ -127,5 +127,8 @@ body{
 }
 
 .sidebar{
-    background-color:antiquewhite;
+    background-color:tan;
+    border:2px solid chocolate;
+    border-radius: 20px;
+    padding-left: 1em !important;
 }

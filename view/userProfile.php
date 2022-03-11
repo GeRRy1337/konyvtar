@@ -1,14 +1,12 @@
 
 <div class="row">
-    <div class="col-2">
-        <nav class="nav navbar-light sidebar">
-            <ul class="navbar-nav mr-auto ">
-                <div>Menü</div>
-                <li class="nav-item"><button class="sidebar-item" onclick='setDisplay("Settings")'>Beállítások</button></li>
-                <li class="nav-item"><button class="sidebar-item" onclick='setDisplay("Borrow")'>Kölcsönzések</button></li>
-            </ul>
-        </nav>
-    </div>
+    <nav class="nav navbar-light sidebar navbar-fixed-left">
+        <ul class="navbar-nav mr-auto ">
+            <div>Menü</div>
+            <li class="nav-item"><button class="sidebar-item" onclick='setDisplay("Settings")'>Beállítások</button></li>
+            <li class="nav-item"><button class="sidebar-item" onclick='setDisplay("Borrow")'>Kölcsönzések</button></li>
+        </ul>
+    </nav>
     <div class="container">
         <?php
         $user->set_user($_SESSION['id'],$conn);

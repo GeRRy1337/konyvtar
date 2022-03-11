@@ -1,4 +1,5 @@
 <?php 
+    session_name('konyvtar');
     session_start();
     require 'Includes/db.inc.php';
     require 'model/user.php';
@@ -103,6 +104,7 @@
         include 'controller/'.$page.'.php';
 		include 'Includes/menu.inc.php';
 ?>
+
 </body>
 </html>
 <?php 
