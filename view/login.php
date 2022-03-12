@@ -58,6 +58,7 @@
 ?>
 </div>
 <script>
+    <?php if(isset( $_SESSION['register']) and $_SESSION['register']==true and isset( $_SESSION['resendEmail']) and $_SESSION['resendEmail']==true){?>
     document.getElementById('pw2').oninput=document.getElementById('pw').oninput=function (){
         if( document.getElementById('pw').value != document.getElementById('pw2').value ){
             document.getElementById('error').innerHTML="<?php echo $langArr['passwordMatch'];?>";
@@ -67,6 +68,9 @@
             document.getElementById('error').innerHTML="";
         }
     };
+    <?php }
+    if(isset( $_SESSION['resendEmail']) and $_SESSION['resendEmail']==true){
+    ?>
     document.getElementById('regForm').onsubmit = function() {
         if( document.getElementById('pw').value != document.getElementById('pw2').value ){
             return false;
@@ -74,5 +78,5 @@
 
         return true;
     }
-    
+    <?php }?>
 </script>
