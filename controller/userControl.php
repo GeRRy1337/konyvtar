@@ -40,7 +40,7 @@ if(isset($_POST['user']) and isset($_POST['pw'])) {
 									$subject = $langArr["emailSubject"];
 									$message = $langArr["emailConfrim"].'<a href="'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'].'?page=userControl&emailConf='.$emkey.'">Link</a>';
 									$headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-									$headers .= 'From: konyvtar@no-reply.com' . "\r\n" ;
+									$headers .= 'From: noreply@konyvtar.com' . "\r\n" ;
 									mail($to, $subject, $message, $headers);
 									header('Location: index.php?page=userControl');
 								} else{
@@ -100,7 +100,7 @@ if(isset($_POST['resendButton']) and isset($_POST['email'])){
 					$subject = $langArr["emailSubject"];
 					$message = $langArr["emailConfrim"].'<a href="'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'].'?page=userControl&emailConf='.$emkey.'">Link</a>';
 					$headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-					$headers .= 'From: konyvtar@no-reply.com' . "\r\n" ;
+					$headers .= 'From: noreply@konyvtar.com' . "\r\n" ;
 					mail($to, $subject, $message, $headers);
 					//header('Location: index.php?page=userControl');
 				}
