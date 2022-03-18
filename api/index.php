@@ -12,6 +12,8 @@
                     if(isset($_REQUEST["state"])) $condition.="state=".$_REQUEST["state"]." and ";
                     if(isset($_REQUEST["ISBN"])) $condition.="ISBN=".$_REQUEST["ISBN"]." and ";
                     if(isset($_REQUEST["name"])) $condition.="name='".$_REQUEST["name"]."' and ";
+                    if(isset($_REQUEST["userId"])) $condition.="userId=".$_REQUEST["userId"]." and ";
+                    if(isset($_REQUEST["username"])) $condition.="username=".$_REQUEST["username"]." and ";
                     $condition=substr($condition,0,strlen($condition)-4);
                     $sql="Select * from ".$_REQUEST["from"].(strlen($condition)>0?" Where ".$condition : "" );
                     echo "sql:".$sql."\n";
@@ -47,7 +49,6 @@
                         echo "response:True\n";
                     }else{
                         echo "response:False\n";
-                        echo "sql:".$sql."\n";
                     }
                 }else{
                     $sql = "INSERT INTO ".$_REQUEST['to']." ".$_REQUEST['values'];
@@ -61,6 +62,7 @@
                 $condition="";
                 if(isset($_REQUEST["stockNum"])) $condition.="stockNum=".$_REQUEST["stockNum"]." and ";
                 if(isset($_REQUEST["state"])) $condition.="state=".$_REQUEST["state"]." and ";
+                if(isset($_REQUEST["userId"])) $condition.="userId=".$_REQUEST["userId"]." and ";
                 $condition=substr($condition,0,strlen($condition)-4);
                 $sql = "Update ".$_REQUEST['to']." Set ".str_replace(":","=",$_REQUEST['set']).(strlen($condition)>0?" Where ".$condition : "" ) ;
                 if($result = $conn->query($sql)) {
