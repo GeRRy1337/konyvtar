@@ -54,6 +54,11 @@
                     $sql = "INSERT INTO ".$_REQUEST['to']." ".$_REQUEST['values'];
                     if($result = $conn->query($sql)) {
                         echo "response:True\n";
+                        if($_REQUEST['to'] == "cards(birth,addres,phoneNumber,name)"){
+                            $sql = "Select id From cards Order by id desc limit 1";
+                            $result=$conn->query($sql);
+                            echo "id:".$result->fetch_assoc()['id']."\n";
+                        }
                     }else{
                         echo "response:False\n";
                     }
