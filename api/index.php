@@ -16,7 +16,6 @@
                     if(isset($_REQUEST["username"])) $condition.="username=".$_REQUEST["username"]." and ";
                     $condition=substr($condition,0,strlen($condition)-4);
                     $sql="Select * from ".$_REQUEST["from"].(strlen($condition)>0?" Where ".$condition : "" );
-                    echo "sql:".$sql."\n";
                     $result = $conn->query($sql);
                     if ($result->num_rows>0){
                         if($row = $result->fetch_assoc()) {
@@ -73,6 +72,7 @@
                 if(isset($_REQUEST["stockNum"])) $condition.="stockNum=".$_REQUEST["stockNum"]." and ";
                 if(isset($_REQUEST["state"])) $condition.="state=".$_REQUEST["state"]." and ";
                 if(isset($_REQUEST["userId"])) $condition.="userId=".$_REQUEST["userId"]." and ";
+                if(isset($_REQUEST["id"])) $condition.="id=".$_REQUEST["id"]." and ";
                 $condition=substr($condition,0,strlen($condition)-4);
                 $sql = "Update ".$_REQUEST['to']." Set ".str_replace(":","=",$_REQUEST['set']).(strlen($condition)>0?" Where ".$condition : "" ) ;
                 if($result = $conn->query($sql)) {
@@ -81,6 +81,52 @@
                     echo "response:False\n";
                 }
             }elseif($_REQUEST['action']=="Delete"){
+                if(isset($_REQUEST["id"])) $condition.="id=".$_REQUEST["id"]." and ";
+                $condition=substr($condition,0,strlen($condition)-4);
+                $sql="Delete from ".$_REQUEST["from"].(strlen($condition)>0?" Where ".$condition : "" );
+                $result = $conn->query($sql);
+                if ($result->num_rows>0){
+                    echo "response:True\n";
+                }else{
+                    echo "response:False\n";
+                }
+            }elseif($_REQUEST['action']=="userList"){
+                $sql="Select * from users where id not in (select id from admins)";
+                $result = $conn->query($sql);
+                if ($result->num_rows>0){
+                    echo "response:True\n";
+                    $users=array();
+                    while($row = $result->fetch_assoc()) {
+                        $users[]=$row['username'];
+                    }
+                    echo "users:".json_encode($users)."\n";
+                }else{
+                    echo "response:False\n";
+                }
+            }elseif($_REQUEST['action']=="adminList"){
+                $sql="Select * from users where id in (select id from admins)";
+                $result = $conn->query($sql);
+                if ($result->num_rows>0){
+                    echo "response:True\n";
+                    $users=array();
+                    while($row = $result->fetch_assoc()) {
+                        $users[]=$row['username'];
+                    }
+                    echo "users:".json_encode($users)."\n";
+                }else{
+                    echo "response:False\n";
+                }
+            }elseif($_REQUEST['action']=="getPermission"){
+                $sql="Select permission from admins inner join users on admins.id=users.id where username='".$_REQUEST['username']."'";
+                $result = $conn->query($sql);
+                if ($result->num_rows>0){
+                    if($row = $result->fetch_assoc()){
+                        echo "response:True\n";
+                        echo "permission:".$row['permission']."\n";
+                    }
+                }else{
+                    echo "response:False\n";
+                }
             }else{
                 echo 'Error: Unknow action!';
             }
