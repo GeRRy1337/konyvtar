@@ -30,13 +30,18 @@
                     }
                 }else{
                     if (isset($_REQUEST['username']) and isset($_REQUEST['password']) ) {
-                        $result = $conn->query("Select users.id from users inner join admins on users.id=admins.id where username='".$_REQUEST['username']."' and password='".$_REQUEST['password']."'");
+                        $result = $conn->query("Select users.id, admins.permission from users inner join admins on users.id=admins.id where username='".$_REQUEST['username']."' and password='".$_REQUEST['password']."'");
                         if ($result->num_rows>0){
                             if($row = $result->fetch_assoc()) {
                                 echo "response:True\n";
-                                echo "id:".$row['id'];
+                                echo "id:".$row['id']."\n";
+                                echo "permission:".$row['permission']."\n";
                             }
                         }else{
+                            $result = $conn->query("Select id from users where username='".$_REQUEST['username']."' and password='".$_REQUEST['password']."'");
+                            if ($result->num_rows>0){
+                                echo "user:exists\n";
+                            }
                             echo "response:False\n";
                         }
                     }
