@@ -81,15 +81,17 @@
                     echo "response:False\n";
                 }
             }elseif($_REQUEST['action']=="Delete"){
+                $condition="";
                 if(isset($_REQUEST["id"])) $condition.="id=".$_REQUEST["id"]." and ";
+                if(isset($_REQUEST["stockNum"])) $condition.="stockNum=".$_REQUEST["stockNum"]." and ";
                 $condition=substr($condition,0,strlen($condition)-4);
                 $sql="Delete from ".$_REQUEST["from"].(strlen($condition)>0?" Where ".$condition : "" );
-                $result = $conn->query($sql);
-                if ($result->num_rows>0){
+                if ($conn->query($sql) === TRUE){
                     echo "response:True\n";
                 }else{
                     echo "response:False\n";
                 }
+                
             }elseif($_REQUEST['action']=="userList"){
                 $sql="Select * from users where id not in (select id from admins)";
                 $result = $conn->query($sql);
@@ -97,7 +99,7 @@
                     echo "response:True\n";
                     $users=array();
                     while($row = $result->fetch_assoc()) {
-                        $users[]=$row['username'];
+                    $users[]=$row['username'];
                     }
                     echo "users:".json_encode($users)."\n";
                 }else{
