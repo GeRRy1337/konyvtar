@@ -129,7 +129,8 @@
                     $categories.=intval($category).",";
                 }
                 $categories=substr($categories,0,strlen($categories)-1);
-                $categories.=" ) )";
+                $categories.=" ) GROUP by bookId HAVING COUNT(bookId)> ".(count($_SESSION['categories'])-1).")";
+                
             }
             $search=$_SESSION['search'] or '';
             $list = array();
@@ -152,7 +153,7 @@
                     $categories.=intval($category).",";
                 }
                 $categories=substr($categories,0,strlen($categories)-1);
-                $categories.=") )";
+                $categories.=" ) GROUP by bookId HAVING COUNT(bookId)> ".(count($_SESSION['categories'])-1).")";
             }
             $search=$_SESSION['search'] or '';
             $sql = $sql = "SELECT count(books.id) as maxNum FROM books inner join author on AuthorId=author.id where (BookTitle like('%".$search."%') or author.name like ('%".$search."%')) ".$categories;

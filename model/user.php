@@ -8,7 +8,6 @@
         private $cardId;
 
         public function set_user($id, $conn) {
-            // adatbázisból lekérdezzük
             $sql = "SELECT *  FROM users";
             $sql .= " WHERE id = $id ";
             $result = $conn->query($sql);

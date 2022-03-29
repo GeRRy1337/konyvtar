@@ -13,11 +13,6 @@
 
     $authorList=$author->authorList($conn);
 
-    require 'model/admin.php';
-    $admin = new Admin();
-
-    $adminList = $admin->lista($conn);
-
     $langArr=array();
     if(!isset($_COOKIE['lang'])){
         setcookie( 'lang', "hu", time() + 60*60*24*30 );
