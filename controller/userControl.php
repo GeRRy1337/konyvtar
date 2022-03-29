@@ -57,25 +57,28 @@ if(isset($_POST['user']) and isset($_POST['pw'])) {
 		if(strlen($_POST['user']) == 0) $loginError .= $langArr['emptyUser']."<br>";
 		if(strlen($_POST['pw']) == 0) $loginError .= $langArr['emptyPass']."<br>";
 		if($loginError == '') {
-			$sql = "SELECT id,email_confirm FROM users WHERE username = '".$_POST['user']."' ";
-			if(!$result = $conn->query($sql)) echo $conn->error;
-
-			if ($result->num_rows > 0) {
-				
-				if($row = $result->fetch_assoc()) {
-					if($row['email_confirm']==1){
-						$user->set_user($row['id'], $conn);
-						if(md5($_POST['pw']) == $user->get_password()) {
-							$_SESSION["id"] = $row['id'];
-							$_SESSION["username"] = $user->get_username();
-							header('Location: index.php?page=index');
-							exit();
-						}
-						else $loginError .= $langArr['passError'].'<br>';
-					}else $loginError .= $langArr['emailConfirmError'].'<br>';
+			$sql = "SELECT id,email_confirm FROM users WHERE username = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param("s",$us);
+			$us = $_POST['user'];
+			if($stmt->execute()){
+				if(!$result = $stmt->get_result()) echo "SQL Error";
+				if ($result->num_rows > 0) {
+					if($row = $result->fetch_assoc()) {
+						if($row['email_confirm']==1){
+							$user->set_user($row['id'], $conn);
+							if(md5($_POST['pw']) == $user->get_password()) {
+								$_SESSION["id"] = $row['id'];
+								$_SESSION["username"] = $user->get_username();
+								header('Location: index.php?page=index');
+								exit();
+							}
+							else $loginError .= $langArr['passError'].'<br>';
+						}else $loginError .= $langArr['emailConfirmError'].'<br>';
+					}
 				}
+				else $loginError .= $langArr['userError'].'<br>';
 			}
-			else $loginError .= $langArr['userError'].'<br>';
 		}
 	}
 }

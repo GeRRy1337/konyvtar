@@ -4,6 +4,7 @@
         private $id;
         private $username;
         private $password;
+        private $email;
         private $cardId;
 
         public function set_user($id, $conn) {
@@ -17,6 +18,7 @@
                     $this->id = $row['id'];
                     $this->username = $row['username'];
                     $this->password = $row['password'];
+                    $this->email = $row['email'];
                     $this->cardId = -1;
                     $result = $conn->query("SELECT cardId from usercards where userId=".$row['id']);
                     if ($result){ 
@@ -42,6 +44,9 @@
 
         public function get_password(){
             return $this->password;
+        }
+        public function get_email(){
+            return $this->email;
         }
 
         public function get_cardId(){

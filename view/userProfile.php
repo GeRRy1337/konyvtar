@@ -1,4 +1,5 @@
-
+<html style="height:100%;">
+<body style="height:100%;">
 <div class="row">
     <nav class="nav navbar-light sidebar navbar-fixed-left">
         <ul class="navbar-nav mr-auto ">
@@ -9,9 +10,16 @@
     </nav>
     <div class="container">
         <?php
-        $user->set_user($_SESSION['id'],$conn);
+        $user->set_user($_SESSION['id'],$conn); 
         ?>
         <div class="col" id="Settings">
+            <p>Felhasználónév: <?=$user->get_username()?></p>
+            <p>Email: <?=$user->get_email()?></p>
+            <?php
+                if($user->get_cardId()>0){
+                    echo "<p>Kártyaszám: ".$user->get_cardId()."</p>";
+                }
+            ?>
             <form method="post" id="passForm">
                 <h1>Új jelszó</h1>
                 Jelenlegi jelszó: <input type="password" name="oldPw" required><br>
@@ -21,12 +29,21 @@
                 <p id="error"></p>
                 <?= $loginError ?>
             </form>
+            <form method="post" id="emailForm">
+                <h1>Email váltás</h1>
+                Jelenlegi jelszó: <input type="password" name="oldPw" required><br>
+                Új email: <input type="email" name="email" id="email" required><br>
+                Új email megerősítése: <input type="email" name="email2" id="email2" required><br>
+                <input type="submit">
+                <p id="error"></p>
+                <?= $loginError ?>
+            </form>
         </div>
+        <div id="Borrow" class="col justify-content-center">
         <?php
         $userBorrowedList=$user->userBorrowed($conn);
         if(sizeof($userBorrowedList)>0){
         ?>
-        <div id="Borrow" class="col justify-content-center">
             <h3><?php echo $langArr['borrow'];?></h3>
             <table class="table table-dark table-bordered w-100">
                 <thead class="thead-light">
@@ -53,7 +70,6 @@
                 </tbody>
             </table>
             
-        </div>
         <?php 
         }else{
         ?>
@@ -63,6 +79,7 @@
         <?php
         }
         ?>
+        </div>
     </div>
 </div>
 
@@ -85,8 +102,22 @@
             document.getElementById('error').innerHTML="";
         }
     };
+    document.getElementById('email').oninput=document.getElementById('email2').oninput=function (){
+        if( document.getElementById('email').value != document.getElementById('email2').value ){
+            document.getElementById('error').innerHTML="<?php echo "Az email címek nem egyeznek";?>";
+        }else{
+            document.getElementById('error').innerHTML="";
+        }
+    };
     document.getElementById('passForm').onsubmit = function() {
         if( document.getElementById('pw').value != document.getElementById('pw2').value ){
+            return false;
+        }
+
+        return true;
+    }
+    document.getElementById('emailForm').onsubmit = function() {
+        if( document.getElementById('email').value != document.getElementById('email2').value ){
             return false;
         }
 
