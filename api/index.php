@@ -101,7 +101,7 @@
                     while($row = $result->fetch_assoc()) {
                     $users[]=$row['username'];
                     }
-                    echo "users:".json_encode($users)."\n";
+                    echo "users:".json_encode($users,JSON_UNESCAPED_UNICODE )."\n";
                 }else{
                     echo "response:False\n";
                 }
@@ -114,7 +114,7 @@
                     while($row = $result->fetch_assoc()) {
                         $users[]=$row['username'];
                     }
-                    echo "users:".json_encode($users)."\n";
+                    echo "users:".json_encode($users,JSON_UNESCAPED_UNICODE )."\n";
                 }else{
                     echo "response:False\n";
                 }
@@ -126,6 +126,19 @@
                         echo "response:True\n";
                         echo "permission:".$row['permission']."\n";
                     }
+                }else{
+                    echo "response:False\n";
+                }
+            }elseif($_REQUEST['action']=="cardList"){
+                $sql="Select cards.*, users.username from cards left join usercards on cards.id=usercards.cardId left join users on usercards.userId=users.id order by cards.name";
+                $result = $conn->query($sql);
+                if ($result->num_rows>0){
+                    echo "response:True\n";
+                    $cards=array();
+                    while($row = $result->fetch_assoc()) {
+                        $cards[]=$row['id'].";".$row['valid'].";".$row['name'].";".$row['username'].";".$row['addres'].";".$row['birth'].";".$row['phoneNumber'];
+                    }
+                    echo "cards:".json_encode($cards,JSON_UNESCAPED_UNICODE )."\n";
                 }else{
                     echo "response:False\n";
                 }
