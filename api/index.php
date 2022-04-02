@@ -14,6 +14,7 @@
                     if(isset($_REQUEST["name"])) $condition.="name='".$_REQUEST["name"]."' and ";
                     if(isset($_REQUEST["userId"])) $condition.="userId=".$_REQUEST["userId"]." and ";
                     if(isset($_REQUEST["username"])) $condition.="username=".$_REQUEST["username"]." and ";
+                    if(isset($_REQUEST["category_name"])) $condition.="category_name='".$_REQUEST["category_name"]."' and ";
                     $condition=substr($condition,0,strlen($condition)-4);
                     $sql="Select * from ".$_REQUEST["from"].(strlen($condition)>0?" Where ".$condition : "" );
                     $result = $conn->query($sql);
