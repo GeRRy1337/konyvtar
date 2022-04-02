@@ -58,7 +58,7 @@
                     $sql = "INSERT INTO ".$_REQUEST['to']." ".$_REQUEST['values'];
                     if($result = $conn->query($sql)) {
                         echo "response:True\n";
-                        if($_REQUEST['to'] == "cards(birth,addres,phoneNumber,name)"){
+                        if($_REQUEST['to'] == "cards(birth,addres,phoneNumber,name,valid)"){
                             $sql = "Select id From cards Order by id desc limit 1";
                             $result=$conn->query($sql);
                             echo "id:".$result->fetch_assoc()['id']."\n";
@@ -141,6 +141,23 @@
                     echo "cards:".json_encode($cards,JSON_UNESCAPED_UNICODE )."\n";
                 }else{
                     echo "response:False\n";
+                }
+            }elseif($_REQUEST['action']=="getCategories"){
+                if(isset($_REQUEST['bId'])){
+
+                }else{
+                    $sql="Select category_name from categories ";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows>0){
+                        echo "response:True\n";
+                        $categories=array();
+                        while($row = $result->fetch_assoc()) {
+                            $categories[]=$row['category_name'];
+                        }
+                        echo "categories:".json_encode($categories,JSON_UNESCAPED_UNICODE )."\n";
+                    }else{
+                        echo "response:False\n";
+                    }
                 }
             }else{
                 echo 'Error: Unknow action!';
