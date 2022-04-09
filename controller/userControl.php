@@ -3,6 +3,9 @@
 if(isset($_POST['user']) and isset($_POST['pw'])) {
 	if(isset($_POST['pw2']) and isset($_POST['email'])){
 		if($_POST['pw2']!=$_POST['pw']) $loginError.=$langArr["passwordMatch"]."<br>";
+		if(strlen($_POST['user']) == 0) $loginError .= $langArr['emptyUser']."<br>";
+		if(strlen($_POST['pw']) == 0) $loginError .= $langArr['emptyPass']."<br>";
+		if(strlen($_POST['pw2']) == 0) $loginError .= $langArr['emptyPass']."<br>";
 		$email=$_POST['email'];
 		if(!strpos($email,"@") or !strpos($email,".") or strlen(explode(".",explode("@",$email)[1])[0])<1 or strlen(explode(".",explode("@",$email)[1])[1])<1){
 			$loginError .= $langArr["emailError"]."<br>";

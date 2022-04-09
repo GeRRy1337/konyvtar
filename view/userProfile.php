@@ -35,8 +35,8 @@
                 Új email: <input type="email" name="email" id="email" required><br>
                 Új email megerősítése: <input type="email" name="email2" id="email2" required><br>
                 <input type="submit">
-                <p id="error"></p>
-                <?= $loginError ?>
+                <p id="emError"></p>
+                <?= $emError ?>
             </form>
         </div>
         <div id="Borrow" class="col justify-content-center">
@@ -104,9 +104,9 @@
     };
     document.getElementById('email').oninput=document.getElementById('email2').oninput=function (){
         if( document.getElementById('email').value != document.getElementById('email2').value ){
-            document.getElementById('error').innerHTML="<?php echo "Az email címek nem egyeznek";?>";
+            document.getElementById('emError').innerHTML="<?php echo "Az email címek nem egyeznek";?>";
         }else{
-            document.getElementById('error').innerHTML="";
+            document.getElementById('emError').innerHTML="";
         }
     };
     document.getElementById('passForm').onsubmit = function() {
