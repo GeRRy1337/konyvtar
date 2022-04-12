@@ -74,10 +74,12 @@
                 if(isset($_REQUEST["state"])) $condition.="state=".$_REQUEST["state"]." and ";
                 if(isset($_REQUEST["userId"])) $condition.="userId=".$_REQUEST["userId"]." and ";
                 if(isset($_REQUEST["id"])) $condition.="id=".$_REQUEST["id"]." and ";
+                if(isset($_REQUEST["ISBN"])) $condition.="ISBN=".$_REQUEST["ISBN"]." and ";
                 $condition=substr($condition,0,strlen($condition)-4);
                 $sql = "Update ".$_REQUEST['to']." Set ".str_replace(":","=",$_REQUEST['set']).(strlen($condition)>0?" Where ".$condition : "" ) ;
                 if($result = $conn->query($sql)) {
                     echo "response:True\n";
+                    echo 'sql:'.$sql."\n";
                 }else{
                     echo "response:False\n";
                 }
@@ -85,6 +87,7 @@
                 $condition="";
                 if(isset($_REQUEST["id"])) $condition.="id=".$_REQUEST["id"]." and ";
                 if(isset($_REQUEST["stockNum"])) $condition.="stockNum=".$_REQUEST["stockNum"]." and ";
+                if(isset($_REQUEST["bookId"])) $condition.="bookId=".$_REQUEST["bookId"]." and ";
                 $condition=substr($condition,0,strlen($condition)-4);
                 $sql="Delete from ".$_REQUEST["from"].(strlen($condition)>0?" Where ".$condition : "" );
                 if ($conn->query($sql) === TRUE){
