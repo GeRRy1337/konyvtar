@@ -38,7 +38,7 @@
             return $this->birth;
         }
 
-        public function authorList($conn) {
+        public static function authorList($conn) {
             $list = array();
             $sql = "SELECT id FROM author order by name asc";
             if($result = $conn->query($sql)) {
@@ -51,9 +51,9 @@
             return $list;
         }
 
-        public function writtenBooks($conn,$id) {
+        public function writtenBooks($conn) {
             $list = array();
-            $sql = "SELECT id FROM books where AuthorId=".$id;
+            $sql = "SELECT id FROM books where AuthorId=".$this->get_id();
             if($result = $conn->query($sql)) {
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {

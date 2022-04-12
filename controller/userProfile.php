@@ -1,6 +1,7 @@
 <?php
     if(!isset($_SESSION['id'])) header('Location:index.php?page=index');
     $loginError="";
+    $emError="";
     if(isset($_POST['oldPw']) and isset($_POST['pw']) and isset($_POST['pw2'])){
         if(strlen($_POST['oldPw']) == 0) $loginError .= $langArr['emptyPass']."<br>";
         if(strlen($_POST['pw']) == 0) $loginError .= $langArr['emptyPass']."<br>";

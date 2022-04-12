@@ -54,11 +54,11 @@
         <button class="btn btn-primary my-2 my-sm-0" type="submit" name="backward"><</button>
         <?php
           for($i=0;$i<5;$i++){
-              if($_SESSION['indexPage']==$BookVar->getMax($conn)-1){
+              if($_SESSION['indexPage']==Book::getMax($conn)-1){
                 if($_SESSION['indexPage']-3+$i>0){
                   echo '<button class="btn '.($_SESSION['indexPage']+$i==$_SESSION['indexPage']+3?'btn-success':'btn-info').' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-3+$i).'>'.($_SESSION['indexPage']-3+$i).'</button>';
                 }
-              }elseif($_SESSION['indexPage']==$BookVar->getMax($conn)){
+              }elseif($_SESSION['indexPage']==Book::getMax($conn)){
                 if($_SESSION['indexPage']-4+$i>0){
                   echo '<button class="btn '.($_SESSION['indexPage']+$i==$_SESSION['indexPage']+4?'btn-success':'btn-info').' my-2 my-sm-0" type="submit" name="switchPage" value='.($_SESSION['indexPage']-4+$i).'>'.($_SESSION['indexPage']-4+$i).'</button>';
                 }

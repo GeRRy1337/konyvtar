@@ -11,7 +11,7 @@
     require 'model/author.php';
     $author= new Author();
 
-    $authorList=$author->authorList($conn);
+    $authorList=Author::authorList($conn);
 
     $langArr=array();
     if(!isset($_COOKIE['lang'])){

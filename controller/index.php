@@ -10,7 +10,7 @@
         header("Location: index.php?page=index");
         exit();
     }elseif(isset($_POST['forward'])){
-        if( $_SESSION['indexPage']<$BookVar->getMax($conn)){
+        if( $_SESSION['indexPage']<Book::getMax($conn)){
             $_SESSION['indexPage']++;
             header("Location: index.php?page=index");
             exit();
@@ -22,6 +22,6 @@
             exit();
         }
     }
-    $bookIds=$BookVar->bookList($conn);
+    $bookIds=Book::bookList($conn);
     include 'view/index.php';
 ?>

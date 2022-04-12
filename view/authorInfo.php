@@ -1,7 +1,7 @@
 <div class="container bg-light">
     <div class="row">
         <div class="bookContainer">
-            <p><?php echo $langArr['wrote'].': '.$author->get_name()?></p>
+            <p><?php echo $author->get_name();?></p>
             <p><?php echo $langArr['birth'].': '.$author->get_birth(); ?></p>
             <hr>
             <p><?php echo $langArr['desc'].': '.$author->get_description(); ?></p>

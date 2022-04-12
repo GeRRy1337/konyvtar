@@ -106,7 +106,7 @@
             }
         }
 
-        public function favList($conn,$userId) {
+        public static function favList($conn,$userId) {
             $list = array();
             $sql = "SELECT bId FROM favourite  where uId=".$userId;
             if($result = $conn->query($sql)) {
@@ -119,7 +119,7 @@
             return $list;
         }
 
-        public function bookList($conn) {
+        public static function bookList($conn) {
             if(!isset($_SESSION['indexPage'])) $_SESSION['indexPage']=1;
             if(!isset($_SESSION['search'])) $_SESSION['search']='';
             $categories="";
@@ -144,7 +144,7 @@
             }
             return $list;
         }
-        public function getMax($conn) {
+        public static function getMax($conn) {
             if(!isset($_SESSION['search'])) $_SESSION['search']='';
             $categories="";
             if(isset($_SESSION['categories']) and count($_SESSION['categories'])>0){
