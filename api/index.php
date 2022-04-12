@@ -145,7 +145,18 @@
                 }
             }elseif($_REQUEST['action']=="getCategories"){
                 if(isset($_REQUEST['bId'])){
-
+                    $sql="Select category_name from categories INNER JOIN categoryconn on categories.category_id=categoryconn.categoryId where bookId=".$_REQUEST['bId'];
+                    $result = $conn->query($sql);
+                    if ($result->num_rows>0){
+                        echo "response:True\n";
+                        $categories=array();
+                        while($row = $result->fetch_assoc()) {
+                            $categories[]=$row['category_name'];
+                        }
+                        echo "categories:".json_encode($categories,JSON_UNESCAPED_UNICODE )."\n";
+                    }else{
+                        echo "response:False\n";
+                    }
                 }else{
                     $sql="Select category_name from categories ";
                     $result = $conn->query($sql);
@@ -159,6 +170,19 @@
                     }else{
                         echo "response:False\n";
                     }
+                }
+            }elseif($_REQUEST['action']=="borrowList"){
+                $sql="SELECT borrow.cardNum,cards.name,books.BookTitle,borrow.stockNum,borrow.date  FROM `borrow` inner JOIN cards on cards.id=borrow.cardNum inner JOIN stock on stock.stockNum=borrow.stockNum INNER JOIN books on books.id = stock.bookId WHERE state = 0 order by date ASC;";
+                $result = $conn->query($sql);
+                if ($result->num_rows>0){
+                    echo "response:True\n";
+                    $borrows=array();
+                    while($row = $result->fetch_assoc()) {
+                        $borrows[]=$row['cardNum'].";".$row['name'].";".$row['BookTitle'].";".$row['stockNum'].";".$row['date'];
+                    }
+                    echo "borrows:".json_encode($borrows,JSON_UNESCAPED_UNICODE )."\n";
+                }else{
+                    echo "response:False\n";
                 }
             }else{
                 echo 'Error: Unknow action!';
