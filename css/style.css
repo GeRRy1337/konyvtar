@@ -1,65 +1,65 @@
-body{
+body {
     padding-top: 60px;
     background-color: wheat !important;
 }
 
-.bookTable{
-    display:flex;
+.bookTable {
+    display: flex;
     flex-flow: row wrap;
-    justify-content:space-around;
-    gap:2%;
+    justify-content: space-around;
+    gap: 2%;
     padding: 1% 1%;
     background-image: url("../images/wallpapper.jpg");
 }
 
-.bookItem{
+.bookItem {
     text-align: center;
     margin-bottom: 3em;
     width: 16rem;
-    color:black;
+    color: black;
 }
 
-.bookItem img{
+.bookItem img {
     height: 20rem;
     max-width: 16rem;
 }
 
-.category{
-    background-color:gold;
+.category {
+    background-color: gold;
     border: 1px solid black;
     border-radius: 5px;
     margin: 5px;
     padding: 2px;
 }
 
-.categories{
+.categories {
     margin: 15px;
 }
 
-.menubg{
+.menubg {
     background-image: url("../images/menuTexture.jpg");
     background-position: center;
     font-size: 1.15rem;
 }
 
-.menu-scroll{
+.menu-scroll {
     max-height: 8rem;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
-.color-dark{
+.color-dark {
     color: rgba(0, 0, 0, 1) !important;
     font-weight: 400 !important;
 }
 
-.lang{
+.lang {
     background: burlywood;
     border: 2px solid black;
     border-radius: 5px;
 }
 
-.lang select{
+.lang select {
     border-radius: 5px;
     background-color: inherit;
     border: 0;
@@ -71,36 +71,37 @@ body{
     align-items: stretch;
 }
 
-.bookContainer{
-    width:100%;
+.bookContainer {
+    width: 100%;
     text-align: center;
 }
 
 @media screen and (max-height: 700px) {
-    .bookItem img{
+    .bookItem img {
         height: 10rem;
         max-width: 10rem;
     }
-    .bookItem{
+
+    .bookItem {
         width: 10rem;
     }
 }
 
-#infoImg{
+#infoImg {
     height: 20rem;
 }
 
 @media screen and (max-height: 700px) {
-    #infoImg{
+    #infoImg {
         height: 10rem;
     }
 }
 
-#error{
-    color:red;
+#error {
+    color: red;
 }
 
-#favButtonOn{
+#favButtonOn {
     background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0OHY0OEgweiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxwYXRoIGQ9Im0yNCA0Mi43LTIuOS0yLjYzQzEwLjggMzAuNzIgNCAyNC41NSA0IDE3IDQgMTAuODMgOC44MyA2IDE1IDZjMy40OCAwIDYuODIgMS42MiA5IDQuMTdDMjYuMTggNy42MiAyOS41MiA2IDMzIDZjNi4xNyAwIDExIDQuODMgMTEgMTEgMCA3LjU1LTYuOCAxMy43Mi0xNy4xIDIzLjA3TDI0IDQyLjd6IiBmaWxsPSIjZmYwMDAwIiBjbGFzcz0iZmlsbC0wMDAwMDAiPjwvcGF0aD48L3N2Zz4=");
     background-position: center;
     background-repeat: no-repeat;
@@ -109,7 +110,7 @@ body{
     border: none;
 }
 
-#favButtonOff{
+#favButtonOff {
     background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0OHY0OEgweiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxwYXRoIGQ9Im0yNCA0Mi43LTIuOS0yLjYzQzEwLjggMzAuNzIgNCAyNC41NSA0IDE3IDQgMTAuODMgOC44MyA2IDE1IDZjMy40OCAwIDYuODIgMS42MiA5IDQuMTdDMjYuMTggNy42MiAyOS41MiA2IDMzIDZjNi4xNyAwIDExIDQuODMgMTEgMTEgMCA3LjU1LTYuOCAxMy43Mi0xNy4xIDIzLjA3TDI0IDQyLjd6IiBmaWxsPSIjN2Q3ZDdkIiBjbGFzcz0iZmlsbC0wMDAwMDAgZmlsbC1mZjAwMDAiPjwvcGF0aD48L3N2Zz4=");
     background-position: center;
     background-repeat: no-repeat;
@@ -118,18 +119,18 @@ body{
     border: none;
 }
 
-.sidebar-item{
+.sidebar-item {
     background-color: lightgray;
-    border:2px solid lightgray;
+    border: 2px solid lightgray;
     border-bottom: 2px solid black;
     border-radius: 10px;
     margin-bottom: 0.5em;
 }
 
-.sidebar{
-    background-color:tan;
-    border:2px solid chocolate;
+.sidebar {
+    background-color: tan;
+    border: 2px solid chocolate;
     border-radius: 20px;
     padding-left: 1em !important;
-    height:30%;
+    height: 30%;
 }
