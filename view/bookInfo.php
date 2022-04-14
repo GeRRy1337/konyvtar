@@ -1,7 +1,7 @@
 <div class="container bg-light">
     <div class="row">
         <div class="bookContainer">
-            <img id="infoImg" src="<?php echo $BookVar->get_ImageUrlL(); ?>">
+            <img id="infoImg" src="<?php echo $BookVar->get_ImageUrlL(); ?>" alt="<?php echo $BookVar->get_BookTitle() ?>">
             <h1><?php echo $BookVar->get_BookTitle(); ?></h1>
             <hr>
             <p><a href="?page=authorInfo&authorId=<?php echo $BookVar->get_AuthorId() ?>"><?php echo $langArr['wrote'] . ': ' . $BookVar->get_BookAuthor() ?></a></p>

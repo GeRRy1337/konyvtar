@@ -12,8 +12,8 @@
             location.reload();
             }
         '>
-        <option value="hu" <?php if ($_COOKIE['lang'] == "hu") echo "selected"; ?>>HU</option>
-        <option value="en" <?php if ($_COOKIE['lang'] == "en") echo "selected"; ?>>EN</option>
+        <option value="hu" <?php if (isset($_COOKIE['lang']) and $_COOKIE['lang'] == "hu") echo "selected"; ?>>HU</option>
+        <option value="en" <?php if (isset($_COOKIE['lang']) and $_COOKIE['lang'] == "en") echo "selected"; ?>>EN</option>
       </select></span>
 
     <ul class="navbar-nav nav-pills mr-auto">
@@ -51,8 +51,7 @@
       if ($_REQUEST['page'] == 'index') {
     ?>
         <form method="post" class="form-inline my-2 my-lg-0">
-          <button class="btn btn-primary my-2 my-sm-0" type="submit" name="backward">
-            << /button>
+          <button class="btn btn-primary my-2 my-sm-0" type="submit" name="backward"><span class="bi bi-arrow-left"></span></button>
               <?php
               for ($i = 0; $i < 5; $i++) {
                 if ($_SESSION['indexPage'] == Book::getMax($conn) - 1) {
@@ -72,7 +71,7 @@
                 }
               }
               ?>
-              <button class="btn btn-primary my-2 my-sm-0" type="submit" name="forward">></button>
+              <button class="btn btn-primary my-2 my-sm-0" type="submit" name="forward"><span class="bi bi-arrow-right"></span></button>
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle color-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

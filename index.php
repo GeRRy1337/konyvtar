@@ -18,7 +18,7 @@ if (!isset($_COOKIE['lang'])) {
     setcookie('lang', "hu", time() + 60 * 60 * 24 * 30);
 }
 
-if ($_COOKIE['lang'] == "hu") {
+if (isset($_COOKIE['lang']) and $_COOKIE['lang'] == "hu") {
     $file = file_get_contents("localization/hu.json");
     $langArr = json_decode($file, true);
 } else {
