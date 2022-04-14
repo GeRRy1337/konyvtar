@@ -13,6 +13,7 @@ $author = new Author();
 
 $authorList = Author::authorList($conn);
 
+//nyelv beállítása
 $langArr = array();
 if (!isset($_COOKIE['lang'])) {
     setcookie('lang', "hu", time() + 60 * 60 * 24 * 30);
@@ -26,13 +27,12 @@ if (isset($_COOKIE['lang']) and $_COOKIE['lang'] == "hu") {
     $langArr = json_decode($file, true);
 }
 
-
-$page = 'index';
-
+// kijelentkezés
 if (!empty($_REQUEST['action'])) {
     if ($_REQUEST['action'] == 'logout') session_unset();
 }
 
+//ha be van jelentkezve akkor logout menűpont mutatása ha nincs akkor login
 if (!empty($_SESSION["id"])) {
     $szoveg = "<span class='bi bi-box-arrow-left'></span> " . $langArr['logout'] . ": " . $_SESSION["username"];
     $action = "logout";
@@ -41,18 +41,22 @@ if (!empty($_SESSION["id"])) {
     $action = "belepes";
 }
 
-
+//oldal beállítása
+$page = 'index';
 if (isset($_REQUEST['page'])) {
     if (file_exists('controller/' . $_REQUEST['page'] . '.php')) {
         $page = $_REQUEST['page'];
     }
 } else {
+    //kategória keresés kezelése
     if (isset($_REQUEST['category'])) {
-        if (isset($_SESSION["categories"])) {
-            $_SESSION["categories"][] = $_REQUEST['category'];
-        } else {
-            $_SESSION["categories"] = array();
-            $_SESSION["categories"][] = $_REQUEST['category'];
+        if (!in_array($_REQUEST['category'], $_SESSION["categories"])) {
+            if (isset($_SESSION["categories"])) {
+                $_SESSION["categories"][] = $_REQUEST['category'];
+            } else {
+                $_SESSION["categories"] = array();
+                $_SESSION["categories"][] = $_REQUEST['category'];
+            }
         }
         header("location: index.php?page=index");
     } elseif (isset($_REQUEST['removeCat'])) {
@@ -67,30 +71,19 @@ if (isset($_REQUEST['page'])) {
     }
 }
 
+//főoldal gomb megnyomásakor keresés visszaállítása, oldal visszaállítása
 if (isset($_REQUEST['search'])) {
     $_SESSION['search'] = '';
     $_SESSION['indexPage'] = 1;
 }
 
-if (isset($_REQUEST['register']) and $_REQUEST['register'] == true) {
-    $_SESSION['register'] = true;
-} elseif (!isset($_REQUEST['register']) and isset($_SESSION['register']) and $_SESSION['register'] == true) {
-    $_SESSION['register'] = false;
-}
-if (isset($_REQUEST['resendEmail']) and $_REQUEST['resendEmail'] == true) {
-    $_SESSION['resendEmail'] = true;
-} elseif (!isset($_REQUEST['resendEmail']) and isset($_SESSION['resendEmail']) and $_SESSION['resendEmail'] == true) {
-    $_SESSION['resendEmail'] = false;
-}
+// menüpontok
 $menu = array(
     'index' => "<span class='bi bi-house-fill'></span> " . $langArr['home'],
     'favorites' => "<span class='bi bi-star-fill'></span> " . $langArr['favorite'],
     'userProfile' => "<span class='bi bi-person-badge'></span> " . $langArr['profile'],
     'userControl' => $szoveg,
 );
-if (in_array($page, $menu)) {
-    $title = $menu[$page];
-} else $title = $page;
 
 include 'Includes/header.inc.php';
 ?>

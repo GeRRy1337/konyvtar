@@ -1,12 +1,20 @@
 <?php
+/* 
+    a php api kulcs:érték formában komunnikál a java programmal
+    
+    böngésző ellenőrzés, csak Java program érje el
+*/
 $browser = $_SERVER['HTTP_USER_AGENT'];
 if (strpos($browser, "Java") == false) header('location:../index.php?page=index&search=false');
+//api kulcs
 if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb9247be4969e8a650f28eda39756556868d9c1ea") {
-    require(realpath($_SERVER["DOCUMENT_ROOT"]) . '/gergo/szakdolgozat/Includes/db.inc.php');
+    require('../Includes/db.inc.php');
     if (isset($_REQUEST['action'])) {
         if ($_REQUEST['action'] == "Select") {
+            // condition változó tárolja a where feltételeit
             $condition = "";
             if (isset($_REQUEST["from"])) {
+                // lekérdezés az adatbázisból
                 if (isset($_REQUEST["id"])) $condition .= "id=" . $_REQUEST["id"] . " and ";
                 if (isset($_REQUEST["stockNum"])) $condition .= "stockNum=" . $_REQUEST["stockNum"] . " and ";
                 if (isset($_REQUEST["state"])) $condition .= "state=" . $_REQUEST["state"] . " and ";
@@ -29,6 +37,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                     echo "response:False\n";
                 }
             } else {
+                // bejelentkezés
                 if (isset($_REQUEST['username']) and isset($_REQUEST['password'])) {
                     $result = $conn->query("Select users.id, admins.permission from users inner join admins on users.id=admins.id where username='" . $_REQUEST['username'] . "' and password='" . $_REQUEST['password'] . "'");
                     if ($result->num_rows > 0) {
@@ -47,7 +56,9 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                 }
             }
         } elseif ($_REQUEST['action'] == "Insert") {
+            // feltöltés
             if (isset($_REQUEST['img'])) {
+                //borító kép feltöltése adatbázisba
                 $path = explode("\\", $_REQUEST['img']);
                 $sql = "INSERT INTO " . $_REQUEST['to'] . " " . str_replace("blank", "'images/covers/" . $path[count($path) - 1] . "'", $_REQUEST['values']);
                 if ($result = $conn->query($sql)) {
@@ -56,6 +67,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                     echo "response:False\n";
                 }
             } else {
+                //insert
                 $sql = "INSERT INTO " . $_REQUEST['to'] . " " . $_REQUEST['values'];
                 if ($result = $conn->query($sql)) {
                     echo "response:True\n";
@@ -69,6 +81,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                 }
             }
         } elseif ($_REQUEST['action'] == "Update") {
+            //adatok módosítása
             $condition = "";
             if (isset($_REQUEST["stockNum"])) $condition .= "stockNum=" . $_REQUEST["stockNum"] . " and ";
             if (isset($_REQUEST["state"])) $condition .= "state=" . $_REQUEST["state"] . " and ";
@@ -84,6 +97,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                 echo "response:False\n";
             }
         } elseif ($_REQUEST['action'] == "Delete") {
+            // törlés
             $condition = "";
             if (isset($_REQUEST["id"])) $condition .= "id=" . $_REQUEST["id"] . " and ";
             if (isset($_REQUEST["stockNum"])) $condition .= "stockNum=" . $_REQUEST["stockNum"] . " and ";
@@ -96,6 +110,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                 echo "response:False\n";
             }
         } elseif ($_REQUEST['action'] == "userList") {
+            // felhasználók listája
             $sql = "Select * from users where id not in (select id from admins)";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -109,6 +124,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                 echo "response:False\n";
             }
         } elseif ($_REQUEST['action'] == "adminList") {
+            // adminok listája
             $sql = "Select * from users where id in (select id from admins)";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -122,6 +138,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                 echo "response:False\n";
             }
         } elseif ($_REQUEST['action'] == "getPermission") {
+            //adott felhasználó engedély szintje
             $sql = "Select permission from admins inner join users on admins.id=users.id where username='" . $_REQUEST['username'] . "'";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -133,6 +150,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                 echo "response:False\n";
             }
         } elseif ($_REQUEST['action'] == "cardList") {
+            //kártyák listája
             $sql = "Select cards.*, users.username from cards left join usercards on cards.id=usercards.cardId left join users on usercards.userId=users.id order by cards.name";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -146,7 +164,9 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                 echo "response:False\n";
             }
         } elseif ($_REQUEST['action'] == "getCategories") {
+            //kategóriák kezelése
             if (isset($_REQUEST['bId'])) {
+                //adott könyv melyik kategóriába tartozik
                 $sql = "Select category_name from categories INNER JOIN categoryconn on categories.category_id=categoryconn.categoryId where bookId=" . $_REQUEST['bId'];
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
@@ -160,6 +180,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                     echo "response:False\n";
                 }
             } else {
+                //kategóriák listája
                 $sql = "Select category_name from categories ";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
@@ -174,6 +195,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
                 }
             }
         } elseif ($_REQUEST['action'] == "borrowList") {
+            //kölcsönzések listája
             $sql = "SELECT borrow.cardNum,cards.name,books.BookTitle,borrow.stockNum,borrow.date  FROM `borrow` inner JOIN cards on cards.id=borrow.cardNum inner JOIN stock on stock.stockNum=borrow.stockNum INNER JOIN books on books.id = stock.bookId WHERE state = 0 order by date ASC;";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -192,6 +214,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
         return;
     } else {
         if (isset($_FILES['uploaded_file'])) {
+            //kép feltöltése szerverre
             var_dump($_FILES['uploaded_file']);
             $target_path = "../images/covers/";
             $target_path = $target_path . basename($_FILES['uploaded_file']['name']);
@@ -205,6 +228,7 @@ if (isset($_REQUEST['key']) and $_REQUEST['key'] == "313303ef7840acb49ba489ddb92
         return;
     }
 } else {
+    //hibás api kulcs
     echo "You don't have privileges to view this page!";
 }
 ?>

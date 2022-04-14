@@ -1,10 +1,12 @@
 <?php
+    //keresés
     if(!empty($_POST['search'])){
         $_SESSION['indexPage']=1;
         $_SESSION['search']=$_POST['search'];
         header("Location: index.php?page=index");
         exit();
     }
+    //oldalváltás nyilakkal és számokkal
     if(isset($_POST['switchPage'])){
         $_SESSION['indexPage']=$_POST['switchPage'];
         header("Location: index.php?page=index");

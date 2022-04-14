@@ -2,6 +2,7 @@
     if(!isset($_SESSION['id'])) header('Location:index.php?page=index');
     $loginError="";
     $emError="";
+    //jelszó váltása
     if(isset($_POST['oldPw']) and isset($_POST['pw']) and isset($_POST['pw2'])){
         if(strlen($_POST['oldPw']) == 0) $loginError .= $langArr['emptyPass']."<br>";
         if(strlen($_POST['pw']) == 0) $loginError .= $langArr['emptyPass']."<br>";
@@ -29,11 +30,13 @@
             }
         }
     }
+    //email cím váltás
     if(isset($_POST['oldPw']) and isset($_POST['email']) and isset($_POST['email2'])){
         if(strlen($_POST['oldPw']) == 0) $emError .= $langArr['emptyPass']."<br>";
         if(strlen($_POST['email']) == 0) $emError .= "Nem adtál meg emailt<br>";
         if(strlen($_POST['email2']) == 0) $emError .= "Nem adtál meg emailt<br>";
         if($_POST['email']!=$_POST['email2']) $emError.="Email címek nem egyeznek!<br>";
+        //foglalt e az új eamil amire váltaná?
         $sql = "SELECT id FROM users WHERE email = ? ";
         if($stmt = $conn->prepare($sql)){
             $stmt->bind_param("s", $pw);
@@ -59,6 +62,7 @@
                                     $emkey = hash("sha256",$row['username'].":".$_POST['email']);
                                     $id= $_SESSION['id'];
                                     if($stmt->execute()){
+                                        //megerősítő email küldése az új email címre
                                         $emkey = hash("sha256",$row['username'].":".$_POST['email']);
                                         $to      = $em;
                                         $subject = $langArr["emailSubject"];

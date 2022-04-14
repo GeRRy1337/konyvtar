@@ -6,11 +6,11 @@
             <hr>
             <p><a href="?page=authorInfo&authorId=<?php echo $BookVar->get_AuthorId() ?>"><?php echo $langArr['wrote'] . ': ' . $BookVar->get_BookAuthor() ?></a></p>
             <?php
+            //kedvencekhez adás gombja
             if (isset($_SESSION['id'])) {
             ?>
                 <form action="index.php?page=bookInfo&bookId=<?php echo $BookVar->get_id(); ?>" method="POST">
-                    <?php echo $langArr['addTofavorite']; ?>:<input type="submit" value="" <?php if ($BookVar->isFav($conn, $_SESSION['id'])) echo 'id="favButtonOn" name="favButtonOn"';
-                                                                                            else echo 'id="favButtonOff" name="favButtonOff"'; ?>>
+                    <?php echo $langArr['addTofavorite']; ?>:<input type="submit" value="" <?php if ($BookVar->isFav($conn, $_SESSION['id'])) echo 'id="favButtonOn" name="favButtonOn"'; else echo 'id="favButtonOff" name="favButtonOff"'; ?>>
                 </form>
             <?php
             }
@@ -20,6 +20,7 @@
         </div>
     </div>
     <?php
+    //kikölcsönzött példányok listája
     $borrowedList = $BookVar->borrowedList($conn);
     if (sizeof($borrowedList) > 0) {
     ?>

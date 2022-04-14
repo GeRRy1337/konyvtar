@@ -5,6 +5,7 @@
         private $description;
         private $birth;
         
+        // Író beállítása id alapján
         public function set_author($id, $conn) {
             $sql = "SELECT *  FROM author";
             $sql .= " WHERE id = $id ";
@@ -21,7 +22,7 @@
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
         }
-
+        // getterek
         public function get_id(){
             return $this->id;
         }
@@ -38,6 +39,7 @@
             return $this->birth;
         }
 
+        //írók id-jának listája
         public static function authorList($conn) {
             $list = array();
             $sql = "SELECT id FROM author order by name asc";
@@ -51,6 +53,7 @@
             return $list;
         }
 
+        //az jelenlegi író által írt könyvek listája
         public function writtenBooks($conn) {
             $list = array();
             $sql = "SELECT id FROM books where AuthorId=".$this->get_id();
@@ -62,15 +65,6 @@
                 }
             }
             return $list;
-        }
-
-        public function upload_author($conn,$name,$birthDate){
-            $sql = "INSERT INTO author(name,birthDate) VALUES('$name','$birthDate') ";
-            if($result = $conn->query($sql)) {
-                echo 'Sikeres feltöltés';
-            }else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
         }
 
     }

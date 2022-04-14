@@ -1,4 +1,5 @@
 <?php
+// kiválasztott kategóriák megjelenítése
 if (isset($_SESSION['categories']) and count($_SESSION['categories']) > 0) {
     echo '<div class="categories">';
     $categories = "";

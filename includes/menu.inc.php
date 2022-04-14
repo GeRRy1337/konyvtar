@@ -18,16 +18,21 @@
 
     <ul class="navbar-nav nav-pills mr-auto">
       <?php
+      //menüpontok
       foreach ($menu as $key => $value) {
+        //aktív menüpont formázása
         $active = '';
         if (isset($_REQUEST['page']) and $_REQUEST['page'] == $key) $active = ' active';
+        //bejelentkezés/kijelentkezés
         if ($key == 'userControl') $key .= '&action=' . $action;
+        //főoldal
         if ($key == 'index') {
       ?>
           <li class="nav-item">
             <a class="nav-link color-dark <?php echo $active; ?>" href="index.php?page=<?php echo $key; ?>&search=false"><?php echo $value; ?></a>
           </li>
         <?php
+        //a felhasználói profilhoz és kedvencekhez be kell jelentkezni
         } elseif ($key != 'userProfile' and $key != 'favorites') {
         ?>
           <li class="nav-item">
@@ -47,6 +52,7 @@
       ?>
     </ul>
     <?php
+    //főoldalon oldalak váltása, nyilak és a számozott gombok
     if (isset($_REQUEST['page'])) {
       if ($_REQUEST['page'] == 'index') {
     ?>
@@ -72,6 +78,7 @@
               }
               ?>
               <button class="btn btn-primary my-2 my-sm-0" type="submit" name="forward"><span class="bi bi-arrow-right"></span></button>
+              <!-- Kategória keresés lenyíló listája -->
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle color-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -89,6 +96,7 @@
                 </li>
               </ul>
         </form>
+        <!-- Kereső mező -->
         <form method="post" class="form-inline my-2 my-lg-0" name="searchForm">
           <input class="form-control mr-sm-2" type="search" name="search" placeholder="<?php echo $langArr['search']; ?>" aria-label="Search">
           <button class="btn btn-secondary my-2 my-sm-0" type="submit"><span class="bi bi-search"></span> <?php echo $langArr['search']; ?></button>

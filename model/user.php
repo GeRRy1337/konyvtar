@@ -7,6 +7,7 @@
         private $email;
         private $cardId;
 
+        //felhasználó beállítása id alapján
         public function set_user($id, $conn) {
             $sql = "SELECT *  FROM users";
             $sql .= " WHERE id = $id ";
@@ -18,6 +19,8 @@
                     $this->username = $row['username'];
                     $this->password = $row['password'];
                     $this->email = $row['email'];
+                    
+                    //felhasználó kártyájának lekérdezése, amennyiben nem rendelekzik kártyával az id -1 marad
                     $this->cardId = -1;
                     $result = $conn->query("SELECT cardId from usercards where userId=".$row['id']);
                     if ($result){ 
@@ -33,6 +36,7 @@
             }
         }
     
+        //getterek
         public function get_id() {
             return $this->id;
         }
@@ -52,6 +56,7 @@
             return $this->cardId;
         }
 
+        //a felhasználó által kikölcsönzött könyvek listája
         public function userBorrowed($conn) {
             $list = array();
             $sql = "SELECT BookTitle,stock.stockNum,date FROM borrow inner join stock on borrow.stockNum=stock.stockNum inner JOIN books on stock.bookId=books.id where cardNum = ".$this->cardId." and state=0";
